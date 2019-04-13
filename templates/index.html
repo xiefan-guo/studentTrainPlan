@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+    <form method="post">
+        <lable>用户名：</lable><input type="text" name="username"><br>
+        <lable>密码：</lable><input type="password" name="password"><br>
+        <label>确认密码：</label><input type="password" name="password2"><br>
+        <input type="submit" value="提交"><br>
+    </form>
+    {% for message in get_flashed_messages() %}
+        {{ message }}
+    {% endfor %}
+
+    {{ url_str }}
+</body>
+</html>
