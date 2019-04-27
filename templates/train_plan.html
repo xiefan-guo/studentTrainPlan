@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../static/css/style1.css" rel="stylesheet" type="text/css" />
+<script src="../static/js/jquery1.42.min.js" type="text/javascript"></script>
+<script src="../static/js/jquery.js"></script>
+<script src="../static/js/jquery.superslide.2.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=aGaH4Ko0BgRvzly3OQFwWhOxFfX4Tl4z"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<title>培养计划</title>
+</head>
+
+<body>
+<div class="wapper_box">
+<div class="header_box"></div>
+<div class="header_box1">
+    <div class="header_box2">
+         <a class="logo_box" href="index.html"><img src="../static/images/logo1.jpeg"/></a>
+         <ul class="nav_box">
+             <li class="nav_1"><a class="nav_but" href="personal_information.html">个人中心</a></li>
+             <li class="nav_1"><a class="nav_but" href="news_center.html">课程论坛</a>
+               <div class="nav_slide">
+                <div class="nav_slide1">
+                    <a href="news_center.html">课程公告<span><img src="../static/images/siade_bg1.png"/></span></a>
+                    <a href="course_discussion.html">课程讨论<span><img src="../static/images/siade_bg1.png"/></span></a>
+                 </div>
+               </div>  
+             </li>
+             <li class="nav_1"><a class="nav_but" href="train_plan.html">培养计划</a></li>
+             <li class="nav_1"><a class="nav_but" href="index.html">首页</a></li>
+         </ul>
+    </div>
+        <script>	 
+             $(".nav_1").mouseenter(function(){
+				 $(this).find(".nav_slide").slideDown()
+			  });
+			  
+			  $(".nav_1").mouseleave(function(){ 
+				 $(".nav_slide").slideUp()
+			 });
+			 //$(".producys_box").mouseout(function(){
+				// $(this).find(".producys_box1").slideUp(); 
+			 //});
+          </script>
+</div>
+<!--banner部分开始-->
+  <div class="banner_box">
+        <ul class="banner_pic">
+            <li><img src="../static/images/logo.jpeg" /></li>
+            <li><img src="../static/images/logo.jpeg" /></li>
+            <li><img src="../static/images/logo.jpeg" /></li>
+    
+        </ul>
+        <a class="prev" href="javascript:void(0)"></a>
+        <a class="next" href="javascript:void(0)"></a>
+        <div class="num"><ul></ul></div>
+  </div>
+	<script>
+    /*鼠标移过，左右按钮显示*/
+    $(".banner_box").hover(function(){
+        $(this).find(".prev,.next").fadeTo("show",0.1);
+    },function(){
+        $(this).find(".prev,.next").hide();
+    })
+    /*鼠标移过某个按钮 高亮显示*/
+    $(".prev,.next").hover(function(){
+        $(this).fadeTo("show",0.7);
+    },function(){
+        $(this).fadeTo("show",0.1);
+    })
+    $(".banner_box").slide({ titCell:".num ul" , mainCell:".banner_pic" , effect:"fold", autoPlay:true, delayTime:700 , autoPage:true });
+    </script>
+    <!-- 代码 结束 -->
+  <!--banner部分结束-->
+
+<!--内容开始-->
+<div class="content_box">
+   <ul class="content_box_top1">
+   </ul>
+</div>
+
+<div class="content_box">
+   <div class="content_box_bot1">
+       <div class="content_box_bot_l">
+          <div class="info_news">
+            <div class="info_news_but"><p class="on">课程进度</p><p>选课推荐</p></div>
+            <div class="col-md-4">
+              <ul class="info_news_text info_news_text1 ">
+              <div class="process-parent1">
+				<div class="process-son" id="bar" style="width: 40%;"><p class="on1">40%</p>
+				</div>
+			  </div>
+			  <div class="process-parent2">
+				<div class="process-son" id="bar" style="width: 50%;"><p class="on1">50%</p>
+				</div>
+			  </div>
+			  <div class="process-parent3">
+				<div class="process-son" id="bar" style="width: 60%;"><p class="on1">60%</p>
+				</div>
+			  </div>
+			  <div class="process-parent4">
+				<div class="process-son" id="bar" style="width: 70%;"><p class="on1">70%</p>
+				</div>
+			  </div>
+            </ul></div>
+            <ul class="info_news_text info_news_text2">
+              <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐1</p></a></li>
+              <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐2</p></a></li>
+              <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐3</p></a></li>
+              <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐4</p></a></li>
+            </ul>
+          <script>
+            $(".info_news_but p").each(function(n){
+				$(this).click(function(){
+				$(this).addClass("on").siblings("p").removeClass("on");
+				$(".info_news_text").hide(400).eq(n).show(500);
+		    });
+           });
+          </script>
+          </li>
+       </div>
+       <div class="content_box_bot_l">
+               <div class='container' id="container" style="height: 100%"></div>
+               <script type="text/javascript" src="../static/js/Tree.js"></script>
+               <input type="submit" value="Submit">
+               <input type="reset" name="butReset" value="reset按钮">
+       </div>
+   </ul>
+
+</div>
+
+<!--内容结束--> 
+
+</div>
+
+
+</body>
+
+</html>
