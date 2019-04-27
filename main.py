@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 
 @app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
@@ -29,6 +30,11 @@ def news_center():
 @app.route('/personal_information', methods=['GET', 'POST'])
 def personal_information():
     return render_template('personal_information.html')
+
+
+@app.route('/train_plan', methods=['GET', 'POST'])
+def train_plan():
+    return render_template('train_plan.html')
 
 
 if __name__ == '__main__':

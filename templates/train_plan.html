@@ -32,19 +32,19 @@
 <div class="header_box"></div>
 <div class="header_box1">
     <div class="header_box2">
-         <a class="logo_box" href="index.html"><img src="../static/images/logo1.jpeg"/></a>
+         <a class="logo_box" href="{{ url_for('index') }}"><img src="../static/images/logo1.jpeg"/></a>
          <ul class="nav_box">
-             <li class="nav_1"><a class="nav_but" href="personal_information.html">个人中心</a></li>
-             <li class="nav_1"><a class="nav_but" href="news_center.html">课程论坛</a>
+             <li class="nav_1"><a class="nav_but" href="{{ url_for('personal_information') }}">个人中心</a></li>
+             <li class="nav_1"><a class="nav_but" href="{{ url_for('news_center') }}">课程论坛</a>
                <div class="nav_slide">
                 <div class="nav_slide1">
-                    <a href="news_center.html">课程公告<span><img src="../static/images/siade_bg1.png"/></span></a>
-                    <a href="course_discussion.html">课程讨论<span><img src="../static/images/siade_bg1.png"/></span></a>
+                    <a href="{{ url_for('news_center') }}">课程公告<span><img src="../static/images/siade_bg1.png"/></span></a>
+                    <a href="{{ url_for('course_discussion') }}">课程讨论<span><img src="../static/images/siade_bg1.png"/></span></a>
                  </div>
                </div>  
              </li>
-             <li class="nav_1"><a class="nav_but" href="train_plan.html">培养计划</a></li>
-             <li class="nav_1"><a class="nav_but" href="index.html">首页</a></li>
+             <li class="nav_1"><a class="nav_but" href="{{ url_for('train_plan') }}">培养计划</a></li>
+             <li class="nav_1"><a class="nav_but" href="{{ url_for('index') }}">首页</a></li>
          </ul>
     </div>
         <script>	 
