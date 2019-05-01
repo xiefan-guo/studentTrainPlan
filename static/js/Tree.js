@@ -48,7 +48,7 @@ myChart.setOption(option = {
     series:[
         {
             type: 'tree',
-
+            name: 'trainPlanTree',
             data: [data2],
 
             left: '2%',
@@ -65,9 +65,9 @@ myChart.setOption(option = {
             label: {
                 normal: {
                     position: 'top',
-                    rotate: -90,
+                    rotate: 0,
                     verticalAlign: 'middle',
-                    align: 'right',
+                    align: 'center',
                     fontSize: 9
                 }
             },
@@ -76,9 +76,9 @@ myChart.setOption(option = {
                 label: {
                     normal: {
                         position: 'bottom',
-                        rotate: -90,
+                        rotate: 0,
                         verticalAlign: 'middle',
-                        align: 'left'
+                        align: 'center'
                     }
                 }
             },

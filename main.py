@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request, flash,  jsonify
 from utils.query import query
 
 # 创建flask对象
@@ -35,6 +35,14 @@ def personal_information():
 @app.route('/train_plan', methods=['GET', 'POST'])
 def train_plan():
     return render_template('train_plan.html')
+
+@app.route('/submit_train_plan', methods=['GET', 'POST'])
+def submit_train_place():
+    print("11")
+    train_plan = request.get_json(force=True)
+    train_plan['name'] = "数据转换成功"
+    print(train_plan)
+    return jsonify(train_plan)
 
 
 if __name__ == '__main__':
