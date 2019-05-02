@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request, flash,  jsonify
+import json
 from utils.query import query
 
 # 创建flask对象
@@ -34,7 +35,21 @@ def personal_information():
 
 @app.route('/train_plan', methods=['GET', 'POST'])
 def train_plan():
+    data = {'name': '数据转换成功', 'children': [{'name': '123123123', 'children': [{'name': 'FlareVis', 'value': 4116, 'itemStyle': {'borderColor': 'red'}}]}, {'name': 'scale', 'children': [{'name': 'TimeScale', 'value': 5833, 'categories': 1, 'itemStyle': {'borderColor': 'red'}}]}, {'name': 'display', 'children': [{'name': 'DirtySprite', 'value': 8833, 'itemStyle': {'borderColor': 'red'}}]}]}
     return render_template('train_plan.html')
+
+@app.route('/get_info', methods=['GET', 'POST'])
+def get_info():
+    data = {'name': '数据转换成功', 'children': [{'name': '123123123', 'children': [{'name': 'FlareVis', 'value': 4116, 'itemStyle': {'borderColor': 'red'}}]}, {'name': 'scale', 'children': [{'name': 'TimeScale', 'value': 5833, 'categories': 1, 'itemStyle': {'borderColor': 'red'}}]}, {'name': 'display', 'children': [{'name': 'DirtySprite', 'value': 8833, 'itemStyle': {'borderColor': 'red'}}]}]}
+    print(data)
+    return jsonify(data)
+
+@app.route('/submit_train_plan', methods=['GET', 'POST'])
+def submit_train_place():
+    train_plan = request.get_json(force=True)
+    train_plan['name'] = "数据转换成功"
+    print(train_plan)
+    return jsonify(train_plan)
 
 
 if __name__ == '__main__':

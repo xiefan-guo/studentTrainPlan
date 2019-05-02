@@ -39,51 +39,53 @@ var data2 = {
         }
     ]
 };
+$.getJSON('/get_info', function(data)
+{
+    myChart.setOption(option = {
+        tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove'
+        },
+        series: [
+            {
+                type: 'tree',
+                name: 'trainPlanTree',
+                data: [data],
 
-myChart.setOption(option = {
-    tooltip: {
-        trigger: 'item',
-        triggerOn: 'mousemove'
-    },
-    series:[
-        {
-            type: 'tree',
+                left: '2%',
+                right: '2%',
+                top: '8%',
+                bottom: '20%',
 
-            data: [data2],
+                symbol: 'emptyCircle',
 
-            left: '2%',
-            right: '2%',
-            top: '8%',
-            bottom: '20%',
+                orient: 'vertical',
 
-            symbol: 'emptyCircle',
+                expandAndCollapse: true,
 
-            orient: 'vertical',
-
-            expandAndCollapse: true,
-
-            label: {
-                normal: {
-                    position: 'top',
-                    rotate: -90,
-                    verticalAlign: 'middle',
-                    align: 'right',
-                    fontSize: 9
-                }
-            },
-
-            leaves: {
                 label: {
                     normal: {
-                        position: 'bottom',
-                        rotate: -90,
+                        position: 'top',
+                        rotate: 0,
                         verticalAlign: 'middle',
-                        align: 'left'
+                        align: 'center',
+                        fontSize: 15
                     }
-                }
-            },
+                },
 
-            animationDurationUpdate: 750
-        }
-    ]
+                leaves: {
+                    label: {
+                        normal: {
+                            position: 'bottom',
+                            rotate: 0,
+                            verticalAlign: 'middle',
+                            align: 'center'
+                        }
+                    }
+                },
+
+                animationDurationUpdate: 750
+            }
+        ]
+    });
 });
