@@ -1,8 +1,5 @@
 # -*- coding:utf-8 -*-
 from flask import Flask, render_template, request, flash,  jsonify
-import json
-from utils.query import query
-
 # 创建flask对象
 app = Flask(__name__)
 

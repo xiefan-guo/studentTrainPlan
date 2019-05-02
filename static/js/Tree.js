@@ -15,30 +15,6 @@ function clickFun(param) {
         myChart.setOption({});
     }
 };
-var data2 = {
-    "name": "flare",
-    "children": [
-        {
-            "name": "flex",
-            "children": [
-                {"name": "FlareVis", "value": 4116, "itemStyle": {borderColor: "red",}}
-            ]
-        },
-        {
-            "name": "scale",
-            "children": [
-
-                {"name": "TimeScale", "value": 5833, "categories":1, "itemStyle": {borderColor: "red",}}
-            ]
-        },
-        {
-            "name": "display",
-            "children": [
-                {"name": "DirtySprite", "value": 8833, "itemStyle": {borderColor: "red",}}
-            ]
-        }
-    ]
-};
 $.getJSON('/get_info', function(data)
 {
     myChart.setOption(option = {
@@ -46,10 +22,10 @@ $.getJSON('/get_info', function(data)
             trigger: 'item',
             triggerOn: 'mousemove'
         },
-        series: [
+        series:[
             {
                 type: 'tree',
-                name: 'trainPlanTree',
+
                 data: [data],
 
                 left: '2%',
@@ -66,10 +42,10 @@ $.getJSON('/get_info', function(data)
                 label: {
                     normal: {
                         position: 'top',
-                        rotate: 0,
+                        rotate: -90,
                         verticalAlign: 'middle',
-                        align: 'center',
-                        fontSize: 15
+                        align: 'right',
+                        fontSize: 9
                     }
                 },
 
@@ -77,9 +53,9 @@ $.getJSON('/get_info', function(data)
                     label: {
                         normal: {
                             position: 'bottom',
-                            rotate: 0,
+                            rotate: -90,
                             verticalAlign: 'middle',
-                            align: 'center'
+                            align: 'left'
                         }
                     }
                 },
@@ -88,4 +64,5 @@ $.getJSON('/get_info', function(data)
             }
         ]
     });
+
 });
