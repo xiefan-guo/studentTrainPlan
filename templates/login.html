@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>登录</title>
-	<link rel="stylesheet" type="text/css" href="../static/style/register-login.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/register-login.css">
 </head>
 <body>
 <div id="box"></div>
@@ -21,22 +21,22 @@
 				<div class="slide-bar"></div>				
 			</div>
 		</div>
-
-		<div class="login form">
+    <form method="post">
+        <div class="login form">
 			<div class="group">
 				<div class="group-ipt email">
-					<input type="text" name="email" id="email" class="ipt" placeholder="邮箱地址" required>
+					<input type="text" name="stu_id" id="email" class="ipt" placeholder="输入您的学号" required>
 				</div>
 				<div class="group-ipt password">
 					<input type="password" name="password" id="password" class="ipt" placeholder="输入您的登录密码" required>
 				</div>
 
 			</div>
+            <div class="button">
+                <button type="submit" class="login-btn register-btn" id="button">登录</button>
+            </div>
 		</div>
-
-		<div class="button">
-			<button type="submit" class="login-btn register-btn" id="button">登录</button>
-		</div>
+    </form>
 
 		<div class="remember clearfix">
 			<label class="remember-me"><span class="icon"><span class="zt"></span></span><input type="checkbox" name="remember-me" id="remember-me" class="remember-mecheck" checked>记住我</label>

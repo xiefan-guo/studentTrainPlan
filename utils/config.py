@@ -8,7 +8,6 @@ class Config:
     def init_app(app):
         pass
 
-
 config = {
     'default': Config,
     'MYSQL_PASSWORD': '123456',
