@@ -26,132 +26,119 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <title>培养计划</title>
-</head>
-<script>
-    $("#submit").click(function(){
-        alert("hello");
-    })
-</script>
 <body>
 <div class="wapper_box">
-<div class="header_box"></div>
-<div class="header_box1">
-    <div class="header_box2">
-         <a class="logo_box" href="{{ url_for('index') }}"><img src="../static/images/logo1.jpeg"/></a>
-         <ul class="nav_box">
-             <li class="nav_1"><a class="nav_but" href="{{ url_for('personal_information') }}">个人中心</a></li>
-             <li class="nav_1"><a class="nav_but" href="{{ url_for('news_center') }}">课程论坛</a>
-               <div class="nav_slide">
-                <div class="nav_slide1">
-                    <a href="{{ url_for('news_center') }}">课程公告<span><img src="../static/images/siade_bg1.png"/></span></a>
-                    <a href="{{ url_for('course_discussion') }}">课程讨论<span><img src="../static/images/siade_bg1.png"/></span></a>
-                 </div>
-               </div>  
-             </li>
-             <li class="nav_1"><a class="nav_but" href="{{ url_for('train_plan') }}">培养计划</a></li>
-             <li class="nav_1"><a class="nav_but" href="{{ url_for('index') }}">首页</a></li>
-         </ul>
+    <div class="header_box"></div>
+    <div class="header_box1">
+        <div class="header_box2">
+            <a class="logo_box" href="{{ url_for('index') }}"><img src="../static/images/logo1.jpeg"/></a>
+            <ul class="nav_box">
+                <li class="nav_1"><a class="nav_but" href="{{ url_for('personal_information') }}">个人中心</a></li>
+                <li class="nav_1"><a class="nav_but" href="{{ url_for('news_center') }}">课程论坛</a>
+                    <div class="nav_slide">
+                        <div class="nav_slide1">
+                            <a href="{{ url_for('news_center') }}">课程公告<span><img src="../static/images/siade_bg1.png"/></span></a>
+                            <a href="{{ url_for('course_discussion') }}">课程讨论<span><img src="../static/images/siade_bg1.png"/></span></a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav_1"><a class="nav_but" href="{{ url_for('train_plan') }}">培养计划</a></li>
+                <li class="nav_1"><a class="nav_but" href="{{ url_for('index') }}">首页</a></li>
+            </ul>
+        </div>
+        <script>
+            $(".nav_1").mouseenter(function(){
+                $(this).find(".nav_slide").slideDown()
+            });
+
+            $(".nav_1").mouseleave(function(){
+                $(".nav_slide").slideUp()
+            });
+            //$(".producys_box").mouseout(function(){
+            // $(this).find(".producys_box1").slideUp();
+            //});
+        </script>
     </div>
-        <script>	 
-             $(".nav_1").mouseenter(function(){
-				 $(this).find(".nav_slide").slideDown()
-			  });
-			  
-			  $(".nav_1").mouseleave(function(){ 
-				 $(".nav_slide").slideUp()
-			 });
-			 //$(".producys_box").mouseout(function(){
-				// $(this).find(".producys_box1").slideUp(); 
-			 //});
-          </script>
-</div>
-<!--banner部分开始-->
-  <div class="banner_box">
-        <ul class="banner_pic">
-            <li><img src="../static/images/logo.jpeg" /></li>
-            <li><img src="../static/images/logo.jpeg" /></li>
-            <li><img src="../static/images/logo.jpeg" /></li>
-    
-        </ul>
-        <a class="prev" href="javascript:void(0)"></a>
-        <a class="next" href="javascript:void(0)"></a>
-        <div class="num"><ul></ul></div>
-  </div>
-	<script>
-    /*鼠标移过，左右按钮显示*/
-    $(".banner_box").hover(function(){
-        $(this).find(".prev,.next").fadeTo("show",0.1);
-    },function(){
-        $(this).find(".prev,.next").hide();
-    })
-    /*鼠标移过某个按钮 高亮显示*/
-    $(".prev,.next").hover(function(){
-        $(this).fadeTo("show",0.7);
-    },function(){
-        $(this).fadeTo("show",0.1);
-    })
-    $(".banner_box").slide({ titCell:".num ul" , mainCell:".banner_pic" , effect:"fold", autoPlay:true, delayTime:700 , autoPage:true });
-    </script>
-    <!-- 代码 结束 -->
-  <!--banner部分结束-->
+    <!--banner部分开始-->
 
-<!--内容开始-->
-<div class="content_box">
-   <ul class="content_box_top1">
-   </ul>
+
+    <!--banner部分结束-->
+
+    <!--内容开始-->
+
+
+
+    <!--内容结束-->
+
 </div>
 
-<div class="content_box">
-   <div class="content_box_bot1">
-       <div class="content_box_bot_l">
-          <div class="info_news">
+<div class="content_box_bot1">
+    <ul class="content_box_bot_l">
+        <div class="info_news">
             <div class="info_news_but"><p class="on">课程进度</p><p>选课推荐</p></div>
             <div class="col-md-4">
-              <ul class="info_news_text info_news_text1 ">
-              <div class="process-parent1">
-				<div class="process-son" id="bar" style="width: 40%;"><p class="on1">40%</p>
-				</div>
-			  </div>
-			  <div class="process-parent2">
-				<div class="process-son" id="bar" style="width: 50%;"><p class="on1">50%</p>
-				</div>
-			  </div>
-			  <div class="process-parent3">
-				<div class="process-son" id="bar" style="width: 60%;"><p class="on1">60%</p>
-				</div>
-			  </div>
-			  <div class="process-parent4">
-				<div class="process-son" id="bar" style="width: 70%;"><p class="on1">70%</p>
-				</div>
-			  </div>
-            </ul></div>
+                <ul class="info_news_text info_news_text1 ">
+                    <div class="process-parent1">
+                        <div class="process-son" id="bar" style="width: 40%;"><p class="on1">40%</p>
+                        </div>
+                    </div>
+                    <div class="process-parent2">
+                        <div class="process-son" id="bar" style="width: 50%;"><p class="on1">50%</p>
+                        </div>
+                    </div>
+                    <div class="process-parent3">
+                        <div class="process-son" id="bar" style="width: 60%;"><p class="on1">60%</p>
+                        </div>
+                    </div>
+                    <div class="process-parent4">
+                        <div class="process-son" id="bar" style="width: 70%;"><p class="on1">70%</p>
+                        </div>
+                    </div>
+                    <div class="process-parent5">
+                        <div class="process-son" id="bar" style="width: 40%;"><p class="on1">40%</p>
+                        </div>
+                    </div>
+                    <div class="process-parent6">
+                        <div class="process-son" id="bar" style="width: 50%;"><p class="on1">50%</p>
+                        </div>
+                    </div>
+                    <div class="process-parent7">
+                        <div class="process-son" id="bar" style="width: 60%;"><p class="on1">60%</p>
+                        </div>
+                    </div>
+                    <div class="process-parent8">
+                        <div class="process-son" id="bar" style="width: 70%;"><p class="on1">70%</p>
+                        </div>
+                    </div>
+                </ul>
+            </div>
             <ul class="info_news_text info_news_text2">
-              <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐1</p></a></li>
-              <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐2</p></a></li>
-              <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐3</p></a></li>
-              <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐4</p></a></li>
+                <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐1</p></a></li>
+                <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐2</p></a></li>
+                <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐3</p></a></li>
+                <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐4</p></a></li>
             </ul>
-          <script>
-            $(".info_news_but p").each(function(n){
-				$(this).click(function(){
-				$(this).addClass("on").siblings("p").removeClass("on");
-				$(".info_news_text").hide(400).eq(n).show(500);
-		    });
-           });
-          </script>
-          </li>
-       </div>
-       <div class="content_box_bot_l">
-               <div class='container' id="container" style="height: 100%"></div>
-               <script type="text/javascript" src="../static/js/Tree.js"></script>
-               <input type="submit" onclick="submit()" value="Submit" >
-               <input type="reset" name="butReset" value="reset按钮">
-       </div>
-   </ul>
-</div>
-<!--内容结束--> 
+            <script>
+                $(".info_news_but p").each(function(n){
+                    $(this).click(function(){
+                        $(this).addClass("on").siblings("p").removeClass("on");
+                        $(".info_news_text").hide(400).eq(n).show(500);
+                    });
+                });
 
+            </script>
+        </div>
+    </ul>
+    <div class="content_box_bot_l">
+        <div class='container' id="container" style="height: 100%"></div>
+        <script type="text/javascript" src="../static/js/Tree.js"></script>
+    </div>
 </div>
+<div class="submitReset">
+    <input type="submit" onclick="submit()" value="Submit" >
+    <input type="reset" name="butReset" value="reset按钮">
+</div>
+
 
 </body>
 

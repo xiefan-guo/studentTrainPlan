@@ -11,50 +11,53 @@
 
 <body>
 <div class="wapper_box">
-<div class="header_box"></div>
-<div class="header_box1">
-    <div class="header_box2">
-         <a class="logo_box" href="{{ url_for('index') }}"><img src="../static/images/logo1.jpeg"/></a>
-         <ul class="nav_box">
-             <li class="nav_1"><a class="nav_but" href="{{ url_for('personal_information') }}">个人中心</a></li>
-             <li class="nav_1"><a class="nav_but" href="{{ url_for('news_center') }}">课程论坛</a>
-               <div class="nav_slide">
-                <div class="nav_slide1">
-                    <a href="">课程公告<span><img src="../static/images/siade_bg1.png"/></span></a>
-                    <a href="">课程讨论<span><img src="../static/images/siade_bg1.png"/></span></a>
-                 </div>
-               </div>  
-             </li>
-             <li class="nav_1"><a class="nav_but" href="{{ url_for('train_plan') }}">培养计划</a></li>
-             <li class="nav_1"><a class="nav_but" href="{{ url_for('index') }}">首页</a></li>
-         </ul>
+    <div class="header_box"></div>
+    <div class="header_box1">
+        <div class="header_box2">
+            <a class="logo_box" href="{{ url_for('index') }}">
+                <img src="../static/images/logo1.jpeg"/></a>
+            <ul class="nav_box">
+                <li class="nav_1"><a class="nav_but" href="{{ url_for('personal_information') }}">个人中心</a></li>
+                <li class="nav_1"><a class="nav_but" href="{{ url_for('news_center') }}">课程论坛</a>
+                    <div class="nav_slide">
+                        <div class="nav_slide1">
+                            <a href="xinwenzhongxin.html">课程公告<span>
+                            <img src="../static/images/siade_bg1.png"/></span></a>
+                        <a href="{{ url_for('course_discussion') }}">课程讨论<span>
+                            <img src="../static/images/siade_bg1.png"/></span></a>
+        </div>
     </div>
-        <script>	 
-             $(".nav_1").mouseenter(function(){
-				 $(this).find(".nav_slide").slideDown()
-			  });
-			  
-			  $(".nav_1").mouseleave(function(){ 
-				 $(".nav_slide").slideUp()
-			 });
-			 //$(".producys_box").mouseout(function(){
-				// $(this).find(".producys_box1").slideUp(); 
-			 //});
-          </script>
+    </li>
+    <li class="nav_1"><a class="nav_but" href="{{ url_for('train_plan') }}">培养计划</a></li>
+    <li class="nav_1"><a class="nav_but" href= "{{ url_for('index') }}">首页</a></li>
+    </ul>
+</div>
+<script>
+    $(".nav_1").mouseenter(function(){
+        $(this).find(".nav_slide").slideDown()
+    });
+
+    $(".nav_1").mouseleave(function(){
+        $(".nav_slide").slideUp()
+    });
+    //$(".producys_box").mouseout(function(){
+    // $(this).find(".producys_box1").slideUp();
+    //});
+</script>
 </div>
 <!--banner部分开始-->
-  <div class="banner_box">
-        <ul class="banner_pic">
-            <li><img src="../static/images/logo.jpeg" /></li>
-            <li><img src="../static/images/logo.jpeg" /></li>
-            <li><img src="../static/images/logo.jpeg" /></li>
-    
-        </ul>
-        <a class="prev" href="javascript:void(0)"></a>
-        <a class="next" href="javascript:void(0)"></a>
-        <div class="num"><ul></ul></div>
-  </div>
-	<script>
+<div class="banner_box">
+    <ul class="banner_pic">
+        <li><img src="../static/images/logo.jpeg" /></li>
+        <li><img src="../static/images/logo.jpeg" /></li>
+        <li><img src="../static/images/logo.jpeg" /></li>
+
+    </ul>
+    <a class="prev" href="javascript:void(0)"></a>
+    <a class="next" href="javascript:void(0)"></a>
+    <div class="num"><ul></ul></div>
+</div>
+<script>
     /*鼠标移过，左右按钮显示*/
     $(".banner_box").hover(function(){
         $(this).find(".prev,.next").fadeTo("show",0.1);
@@ -68,38 +71,40 @@
         $(this).fadeTo("show",0.1);
     })
     $(".banner_box").slide({ titCell:".num ul" , mainCell:".banner_pic" , effect:"fold", autoPlay:true, delayTime:700 , autoPage:true });
-    </script>
-    <!-- 代码 结束 -->
-  <!--banner部分结束-->
+</script>
+<!-- 代码 结束 -->
+<!--banner部分结束-->
 
 <!--内容开始-->
 <div class="content_box1">
-  <div class="content_box2"> 
-    <div class="menu_box">
-       <p class="menu_box_title">课程论坛<span>news</span></p>
-       <ul class="menu_box1">
-          <li><a href="{{ url_for('news_center') }}">课程公告</a></li>
-          <li><a href="">课程讨论</a></li>
-       </ul>
-    </div>
-    <div class="content_boxL">
-       <div class="content_boxL_nav">
-         <p class="content_boxL_nav_title">课程讨论</p>
-         <div class="content_boxL_nav_R"><a href="">首页 ></a> <a href="">课程论坛 ></a><a href=""> 课程讨论</a></div>                          
-       </div>
-       <div class="content_boxL_text">
-         <ul class="content_boxL_list">
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">1<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">2<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">3<span class="yewu_date">2015-12-29</span></a></li>
-         </ul>       
-       </div>
-       <div class="fenye_box"><a href="">首页</a><a href="">1</a><a href="">2</a><a href="">3</a><a href="">4</a><a href="">……</a><a>下一页</a><a href="">最后一页</a></div>
-    </div>
+    <div class="content_box2">
+        <div class="menu_box">
+            <p class="menu_box_title">课程论坛<span>news</span></p >
+            <ul class="menu_box1">
+                <li><a href="{{ url_for('news_center') }}">课程公告</a></li>
+                <li><a href="{{ url_for('course_discussion') }}">课程讨论</a></li>
+            </ul>
+        </div>
+        <div class="content_boxL">
+            <div class="content_boxL_nav">
+                <p class="content_boxL_nav_title">课程讨论</p >
+                <div class="content_boxL_nav_R">
+                    <a href="{{ url_for('index') }}">首页></a>
+                    <a href="{{ url_for('news_center') }}">课程论坛 ></a>
+                    <a href="{{ url_for('course_discussion') }}"> 课程讨论</a>
+                </div>
+</div>
+<div style="width:800px;margin:10px auto">
+    <table><tr><td> 话题：</td><td><input type="text" style="width:500px" /></td></tr>
+        <tr><td>内容：</td><td><textarea style="width:500px;height:200px"></textarea></td></tr>
+        <tr><td>留言者：</td><td><input type="text" style="width:500px" /></td></tr>
+        <tr><td></td><td><input type="button" value="提交" /></td></tr>
+    </table>
+</div>
+</div>
 </div>
 
-<!--内容结束--> 
+<!--内容结束-->
 </div>
 </body>
-
 </html>

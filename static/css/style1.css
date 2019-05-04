@@ -197,15 +197,22 @@ a:active, a:focus {
 				  border:1px red solid;
 				  box-shadow:0 0 6px #CCC;
 				  border:1px solid white;}
-.content_box_bot1{ width:95%;
-                  height:700px;
-				  background:#f9f9f9;
-				  margin:0 auto 34px;
-				  padding:20px 30px;
-				  overflow:hidden;
-				  border:1px red solid;
-				  box-shadow:0 0 6px #CCC;
-				  border:1px solid white;}				  
+.content_box_bot1{ width:100%;
+	height:800px;
+	background:#f9f9f9;
+	margin:0 auto 34px;
+	padding:20px 30px;
+	overflow:hidden;
+	border:1px red solid;
+	box-shadow:0 0 6px #CCC;
+	border:1px solid white;}
+
+.submitReset{
+	position: relative;
+	left: 300px;
+	top: 200px;
+}
+
 .content_box_bot_l{ width:300px;
                     height:330px;
 					float:left;}
@@ -452,53 +459,90 @@ a:active, a:focus {
     * {  
         padding: 0;  
         margin: 0;  
-    }  
-  
-    .process-parent1 {  
-		margin-top:20px;
-        position: absolute;  
-        width: 150px;
-        border: 1px solid #ccc;  
-        height: 10px;  
-        border-radius: 3px;  
-  
-    }  
-	
-	.process-parent2 { 
-		margin-top:50px;
-        position: absolute;  
-        width: 150px;
-        border: 1px solid #ccc;  
-        height: 10px;  
-        border-radius: 3px;  
-  
     }
+
+	.process-parent1 {
+		margin-top:20px;
+		position: absolute;
+		width: 250px;
+		border: 1px solid #ccc;
+		height: 20px;
+		border-radius: 3px;
+
+	}
+
+	.process-parent2 {
+		margin-top:50px;
+		position: absolute;
+		width: 250px;
+		border: 1px solid #ccc;
+		height: 20px;
+		border-radius: 3px;
+
+	}
 	.process-parent3 {
 		margin-top:80px;
-        position: absolute;  
-        width: 150px;
-        border: 1px solid #ccc;  
-        height: 10px;  
-        border-radius: 3px;  
-  
-    }
-	.process-parent4 {  
-        position: absolute;
+		position: absolute;
+		width: 250px;
+		border: 1px solid #ccc;
+		height: 20px;
+		border-radius: 3px;
+
+	}
+	.process-parent4 {
+		position: absolute;
 		margin-top:110px;
-        width: 150px;
-        border: 1px solid #ccc;  
-        height: 10px;  
-        border-radius: 3px;  
-  
-    }
-    .process-son {  
-        position: relative;  
-        background: #ff0000;  
-        height: 100%;  
-        font-size: 8px;  
-        text-align: center;  
-        color: #fff;  
-    }
+		width: 250px;
+		border: 1px solid #ccc;
+		height: 20px;
+		border-radius: 3px;
+
+	}
+.process-parent5 {
+	margin-top:20px;
+	position: absolute;
+	width: 250px;
+	border: 1px solid #ccc;
+	height: 20px;
+	border-radius: 3px;
+
+}
+
+.process-parent6 {
+	margin-top:50px;
+	position: absolute;
+	width: 250px;
+	border: 1px solid #ccc;
+	height: 20px;
+	border-radius: 3px;
+
+}
+.process-parent7 {
+	margin-top:80px;
+	position: absolute;
+	width: 250px;
+	border: 1px solid #ccc;
+	height: 20px;
+	border-radius: 3px;
+
+}
+.process-parent8 {
+	position: absolute;
+	margin-top:110px;
+	width: 250px;
+	border: 1px solid #ccc;
+	height: 20px;
+	border-radius: 3px;
+
+}
+	.process-son {
+		position: relative;
+		background: #ff0000;
+		height: 100%;
+		font-size: 8px;
+		text-align: center;
+		color: #fff;
+	}
 	.container{
 		width:10px;
 		height:1000px;
