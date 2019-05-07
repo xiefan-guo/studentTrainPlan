@@ -14,7 +14,19 @@ def index():
 
 @app.route('/course_discussion', methods=['GET', 'POST'])
 def course_discussion():
-    return render_template('course_discussion.html')
+    if request.method == 'GET':
+        return render_template('course_discussion.html')
+    else:
+        topic = request.form.get('topic')
+        comments = request.form.get('comments')
+        commenter = request.form.get('commenter')
+        # print(len(topic))
+        # print('course_discussion')
+        # print(topic, commenter, comments)
+        sql = "INSERT INTO NEWS(TOPIC, COMMENTS, COMMENTER) VALUES ('%s', '%s', '%s')" % (topic, comments, commenter)
+        print(sql)
+        query.update(sql)
+        return redirect(url_for('news_center'))
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -62,19 +74,26 @@ def register():
                 return u'已经有这个用户了'
             else:
                 sql = "INSERT INTO STUDENT VALUES('%s', 'SEX', '%s', 'COLLEGE', 'MAJOR', 'AD_YEAR', '%s', 'ID')" % (user, stu_id, password)
-                print(sql)
+                # print(sql)
                 query.update(sql)
                 return redirect(url_for('login'))
 
 
 @app.route('/news_center', methods=['GET', 'POST'])
 def news_center():
-    return render_template('news_center.html')
+    sql = "select * from NEWS"
+    result = query.query(sql)
+    # print(result)
+    return render_template('news_center.html', result=result)
 
 
 @app.route('/personal_information', methods=['GET', 'POST'])
 def personal_information():
-    return render_template('personal_information.html')
+    stu_no = session.get('stu_id')
+    print(stu_no + ' is stu_no')
+    sql = "SELECT * FROM student WHERE STU_NO = '%s'" % stu_no
+    result = query.query(sql)
+    return render_template('personal_information.html', result=result)
 
 
 

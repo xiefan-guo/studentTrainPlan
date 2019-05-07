@@ -89,20 +89,9 @@
        </div>
        <div class="content_boxL_text">
          <ul class="content_boxL_list">
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">我们是天津唯一的金融资产服务机构，有着业内十余年经营管理经验<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">我们是天津唯一的金融资产服务机构，有着业内十余年经营管理经验<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">我们是天津唯一的金融资产服务机构，有着业内十余年经营管理经验<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">我们是天津唯一的金融资产服务机构，有着业内十余年经营管理经验<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">我们是天津唯一的金融资产服务机构，有着业内十余年经营管理经验<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">我们是天津唯一的金融资产服务机构，有着业内十余年经营管理经验<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">我们是天津唯一的金融资产服务机构，有着业内十余年经营管理经验<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">我们是天津唯一的金融资产服务机构，有着业内十余年经营管理经验<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">我们是天津唯一的金融资产服务机构，有着业内十余年经营管理经验<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">我们是天津唯一的金融资产服务机构，有着业内十余年经营管理经验<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">我们是天津唯一的金融资产服务机构，有着业内十余年经营管理经验<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">我们是天津唯一的金融资产服务机构，有着业内十余年经营管理经验<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">我们是天津唯一的金融资产服务机构，有着业内十余年经营管理经验<span class="yewu_date">2015-12-29</span></a></li>
-            <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">我们是天津唯一的金融资产服务机构，有着业内十余年经营管理经验<span class="yewu_date">2015-12-29</span></a></li>
+           {% for message in result %}
+               <li><a class="content_boxL_list_info" href="xinwenzhongxin_xqy.html">{{ message[0] }}: {{ result[0][1] }}<span class="yewu_date">{{ message[3] }}</span></a></li>
+           {% endfor %}
          </ul>       
        </div>
        <div class="fenye_box"><a href="">首页</a><a href="">1</a><a href="">2</a><a href="">3</a><a href="">4</a><a href="">……</a><a>下一页</a><a href="">最后一页</a></div>

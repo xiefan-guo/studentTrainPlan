@@ -9,7 +9,9 @@ def query(sql):
         cur.execute(sql)
         result = cur.fetchall()
         db.commit()
+        print('query success')
     except:
+        print('query loss')
         db.rollback()
     cur.close()
     db.close()

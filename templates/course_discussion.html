@@ -94,13 +94,17 @@
                     <a href="{{ url_for('course_discussion') }}"> 课程讨论</a>
                 </div>
 </div>
+
+<form method="post">
 <div style="width:800px;margin:10px auto">
-    <table><tr><td> 话题：</td><td><input type="text" style="width:500px" /></td></tr>
-        <tr><td>内容：</td><td><textarea style="width:500px;height:200px"></textarea></td></tr>
-        <tr><td>留言者：</td><td><input type="text" style="width:500px" /></td></tr>
-        <tr><td></td><td><input type="button" value="提交" /></td></tr>
+    <table><tr><td> 话题：</td><td><input type="text" name="topic" style="width:500px" /></td></tr>
+        <tr><td>内容：</td><td><textarea  name="comments" style="width:500px;height:200px"></textarea></td></tr>
+        <tr><td>留言者：</td><td><input type="text" name="commenter" style="width:500px" /></td></tr>
+        <tr><td></td><td><button>提交</button></td></tr>
     </table>
 </div>
+</form>
+
 </div>
 </div>
 
