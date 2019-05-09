@@ -207,11 +207,6 @@ a:active, a:focus {
 	box-shadow:0 0 6px #CCC;
 	border:1px solid white;}
 
-.submitReset{
-	position: relative;
-	left: 300px;
-	top: 200px;
-}
 
 .content_box_bot_l{ width:300px;
                     height:330px;
@@ -462,79 +457,228 @@ a:active, a:focus {
     }
 
 	.process-parent1 {
-		margin-top:20px;
+		margin-top: 20px;
+		margin-left:70px;
 		position: absolute;
 		width: 250px;
 		border: 1px solid #ccc;
 		height: 20px;
 		border-radius: 3px;
+	}
 
+
+	.info1{
+		position: absolute;
+		margin-top:20px;
+		margin-left:3px;
+		background: #fff;
+		width: 70px;
+		height: 20px;
 	}
 
 	.process-parent2 {
 		margin-top:50px;
 		position: absolute;
+		margin-left:70px;
 		width: 250px;
 		border: 1px solid #ccc;
 		height: 20px;
 		border-radius: 3px;
 
+	}
+	.info2{
+		position: absolute;
+		margin-top:50px;
+		margin-left:3px;
+		background: #fff;
+		width: 70px;
+		height: 20px;
 	}
 	.process-parent3 {
 		margin-top:80px;
 		position: absolute;
+		margin-left:70px;
 		width: 250px;
 		border: 1px solid #ccc;
 		height: 20px;
 		border-radius: 3px;
 
+	}
+	.info3{
+		position: absolute;
+		margin-top:80px;
+		margin-left:3px;
+		background: #fff;
+		width: 70px;
+		height: 20px;
 	}
 	.process-parent4 {
 		position: absolute;
 		margin-top:110px;
+		margin-left:70px;
 		width: 250px;
 		border: 1px solid #ccc;
 		height: 20px;
 		border-radius: 3px;
 
 	}
-.process-parent5 {
-	margin-top:20px;
-	position: absolute;
-	width: 250px;
-	border: 1px solid #ccc;
-	height: 20px;
-	border-radius: 3px;
+	.info4{
+		position: absolute;
+		margin-top:110px;
+		margin-left:3px;
+		background: #fff;
+		width: 70px;
+		height: 20px;
+	}
+	.process-parent5 {
+		margin-top:140px;
+		margin-left:70px;
+		position: absolute;
+		width: 250px;
+		border: 1px solid #ccc;
+		height: 20px;
+		border-radius: 3px;
 
-}
+	}
+	.info5{
+		position: absolute;
+		margin-top:140px;
+		margin-left:3px;
+		background: #fff;
+		width: 70px;
+		height: 20px;
+	}
+	.process-parent6 {
+		margin-top:170px;
+		position: absolute;
+		margin-left:70px;
+		width: 250px;
+		border: 1px solid #ccc;
+		height: 20px;
+		border-radius: 3px;
 
-.process-parent6 {
-	margin-top:50px;
-	position: absolute;
-	width: 250px;
-	border: 1px solid #ccc;
-	height: 20px;
-	border-radius: 3px;
+	}
+	.info6{
+		position: absolute;
+		margin-top:170px;
+		margin-left:3px;
+		background: #fff;
+		width: 70px;
+		height: 20px;
+	}
+	.process-parent7 {
+		margin-top:200px;
+		margin-left:70px;
+		position: absolute;
+		width: 250px;
+		border: 1px solid #ccc;
+		height: 20px;
+		border-radius: 3px;
 
-}
-.process-parent7 {
-	margin-top:80px;
-	position: absolute;
-	width: 250px;
-	border: 1px solid #ccc;
-	height: 20px;
-	border-radius: 3px;
+	}
+	.info7{
+		position: absolute;
+		margin-top:200px;
+		margin-left:3px;
+		background: #fff;
+		width: 70px;
+		height: 20px;
+	}
+	.process-parent8 {
+		position: absolute;
+		margin-top:230px;
+		margin-left:70px;
+		width: 250px;
+		border: 1px solid #ccc;
+		height: 20px;
+		border-radius: 3px;
 
-}
-.process-parent8 {
-	position: absolute;
-	margin-top:110px;
-	width: 250px;
-	border: 1px solid #ccc;
-	height: 20px;
-	border-radius: 3px;
+	}
+	.info8{
+		position: absolute;
+		margin-top:230px;
+		margin-left:3px;
+		background: #fff;
+		width: 70px;
+		height: 20px;
+	}
+	.process-parent9 {
+		margin-top:260px;
+		position: absolute;
+		margin-left:70px;
+		width: 250px;
+		border: 1px solid #ccc;
+		height: 20px;
+		border-radius: 3px;
 
-}
+	}
+	.info9{
+		position: absolute;
+		margin-top:260px;
+		margin-left:3px;
+		background: #fff;
+		width: 70px;
+		height: 20px;
+	}
+	.process-parent10 {
+		margin-top:290px;
+		position: absolute;
+		margin-left:70px;
+		width: 250px;
+		border: 1px solid #ccc;
+		height: 20px;
+		border-radius: 3px;
+
+	}
+	.info10{
+		position: absolute;
+		margin-top:290px;
+		margin-left:3px;
+		background: #fff;
+		width: 70px;
+		height: 20px;
+	}
+	.process-parent11 {
+		position: absolute;
+		margin-top:320px;
+		margin-left:70px;
+		width: 250px;
+		border: 1px solid #ccc;
+		height: 20px;
+		border-radius: 3px;
+
+	}
+	.info11{
+		position: absolute;
+		margin-top:320px;
+		margin-left:3px;
+		background: #fff;
+		width: 70px;
+		height: 20px;
+	}
+	.process-parent12 {
+		position: absolute;
+		margin-top:350px;
+		width: 250px;
+		margin-left:70px;
+		border: 1px solid #ccc;
+		height: 20px;
+		border-radius: 3px;
+
+	}
+	.info12{
+		position: absolute;
+		margin-top:350px;
+		margin-left:3px;
+		background: #fff;
+		width: 70px;
+		height: 20px;
+	}
+	.submitReset{
+		position: absolute;
+		margin-top:450px;
+		border-radius: 3px;
+	}
 	.process-son {
 		position: relative;
 		background: #ff0000;
@@ -543,6 +687,7 @@ a:active, a:focus {
 		text-align: center;
 		color: #fff;
 	}
+
 	.container{
 		width:10px;
 		height:1000px;
