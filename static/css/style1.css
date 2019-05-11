@@ -674,14 +674,26 @@ a:active, a:focus {
 		width: 70px;
 		height: 20px;
 	}
-	.submitReset{
+	.submit{
 		position: absolute;
-		margin-top:450px;
+		margin-top:400px;
+		margin-left:100px;
+		height: 60px;
+		width: 100px;
+		border-radius: 3px;
+	}
+
+	.reset{
+		position: absolute;
+		margin-top:400px;
+		margin-left:250px;
+		height: 60px;
+		width: 100px;
 		border-radius: 3px;
 	}
 	.process-son {
 		position: relative;
-		background: #ff0000;
+		background: green;
 		height: 100%;
 		font-size: 8px;
 		text-align: center;
