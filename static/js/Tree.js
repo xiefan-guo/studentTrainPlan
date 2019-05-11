@@ -8,11 +8,17 @@ function clickFun(param) {
         return;
     }
     if (param.type == 'click' && typeof param.data.children == "undefined") {
-        if (param.data.itemStyle.borderColor == 'red')
+        console.log(param.data.itemStyle.borderColor);
+        if (param.data.itemStyle.borderColor == 'red') {
             param.data.itemStyle.borderColor = 'yellow';
-        else
+            param.data.itemStyle.Color = 'yellow';
+        }
+        else if(param.data.itemStyle.borderColor == 'yellow') {
             param.data.itemStyle.borderColor = 'red';
+            param.data.itemStyle.Color = 'red';
+        }
         myChart.setOption({});
+        console.log(param.data.itemStyle.borderColor);
     }
 };
 $.getJSON('/get_info', function(data)
@@ -34,9 +40,9 @@ $.getJSON('/get_info', function(data)
                 bottom: '20%',
 
                 symbol: 'emptyCircle',
-
+                symbolSize: 13,
                 orient: 'vertical',
-
+                initialTreeDepth: 2,
                 expandAndCollapse: true,
 
                 label: {
@@ -45,7 +51,7 @@ $.getJSON('/get_info', function(data)
                         rotate: -90,
                         verticalAlign: 'middle',
                         align: 'right',
-                        fontSize: 9
+                        fontSize: 14
                     }
                 },
 

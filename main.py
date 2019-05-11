@@ -180,7 +180,7 @@ def get_info():
             add_time['children'] = add_time_list
         else:
             add_curse['name'] = co_name[0][2]
-            add_curse['itemStyle'] = {'borderColor': 'yellow'}
+            add_curse['itemStyle'] = {'borderColor': 'green'}
             add_is['name'] = str(co_name[0][3])
             add_is_list.append(add_curse)
             add_is['children'] = add_is_list
