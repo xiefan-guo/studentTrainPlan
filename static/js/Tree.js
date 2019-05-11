@@ -47,10 +47,10 @@ $.getJSON('/get_info', function(data)
 
                 label: {
                     normal: {
-                        position: 'top',
+                        position: 'bottom',
                         rotate: -90,
                         verticalAlign: 'middle',
-                        align: 'right',
+                        align: 'left',
                         fontSize: 14
                     }
                 },
