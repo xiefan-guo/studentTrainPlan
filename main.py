@@ -151,6 +151,9 @@ def get_info():
     children11['name'] = '专业选修'
     children11_list = []
     aid = 1
+
+    score = [0] * 15
+
     for co in finished_co:
         course_add = {}
         aid_str = str(aid)
@@ -188,26 +191,49 @@ def get_info():
 
         if co_name[0][0] == '思想政治理论':
             children1_list.append(add_time)
+            score[1] += 1
         if co_name[0][0] == '外语':
             children2_list.append(add_time)
+            score[2] += 1
         if co_name[0][0] == '文化素质教育必修':
             children3_list.append(add_time)
+            score[3] += 1
         if co_name[0][0] == '体育':
             children4_list.append(add_time)
+            score[4] += 1
         if co_name[0][0] == '军事':
             children5_list.append(add_time)
+            score[5] += 1
         if co_name[0][0] == '健康教育':
             children6_list.append(add_time)
+            score[6] += 1
         if co_name[0][0] == '数学':
             children7_list.append(add_time)
+            score[7] += 1
         if co_name[0][0] == '物理':
             children8_list.append(add_time)
+            score[8] += 1
         if co_name[0][0] == '计算机':
             children9_list.append(add_time)
+            score[9] += 1
         if co_name[0][0] == '学科基础':
             children10_list.append(add_time)
+            score[10] += 1
         if co_name[0][0] == '专业选修':
             children11_list.append(add_time)
+            score[11] += 1
+
+    children1['value'] = score[1]
+    children2['value'] = score[2]
+    children3['value'] = score[3]
+    children4['value'] = score[4]
+    children5['value'] = score[5]
+    children6['value'] = score[6]
+    children7['value'] = score[7]
+    children8['value'] = score[8]
+    children9['value'] = score[9]
+    children10['value'] = score[10]
+    children11['value'] = score[11]
 
     children1['children'] = children1_list
     children2['children'] = children2_list
@@ -220,6 +246,7 @@ def get_info():
     children9['children'] = children9_list
     children10['children'] = children10_list
     children11['children'] = children11_list
+
     children.append(children1)
     children.append(children2)
     children.append(children3)
