@@ -152,12 +152,12 @@ def get_info():
     children11_list = []
     aid = 1
 
-    score = [0] * 15
+    score = [0.0] * 15
 
     for co in finished_co:
         course_add = {}
         aid_str = str(aid)
-        sql = "select CLASSIFICATION, START_TIME, CO_NAME, IS_MUST from education_plan WHERE CO_100='%s'" % aid_str
+        sql = "select CLASSIFICATION, START_TIME, CO_NAME, IS_MUST, CREDITS from education_plan WHERE CO_100='%s'" % aid_str
         co_name = query.query(sql)
         # print(co_name)
         aid = aid + 1
@@ -167,10 +167,13 @@ def get_info():
         add_curse = {}
         add_is = {}
         add_time = {}
+
+        add_score = float(co_name[0][4])
         if co == '0':
             #print(co_name)
             add_curse['name'] = co_name[0][2]
             add_curse['itemStyle'] = {'borderColor': 'red'}
+            add_curse['value'] = add_score
 
             add_is['name'] = str(co_name[0][3])
             add_is_list.append(add_curse)
@@ -181,6 +184,8 @@ def get_info():
         else:
             add_curse['name'] = co_name[0][2]
             add_curse['itemStyle'] = {'borderColor': 'green'}
+            add_curse['value'] = add_score
+
             add_is['name'] = str(co_name[0][3])
             add_is_list.append(add_curse)
             add_is['children'] = add_is_list
@@ -191,37 +196,37 @@ def get_info():
 
         if co_name[0][0] == '思想政治理论':
             children1_list.append(add_time)
-            score[1] += 1
+            score[1] += add_score
         if co_name[0][0] == '外语':
             children2_list.append(add_time)
-            score[2] += 1
+            score[2] += add_score
         if co_name[0][0] == '文化素质教育必修':
             children3_list.append(add_time)
-            score[3] += 1
+            score[3] += add_score
         if co_name[0][0] == '体育':
             children4_list.append(add_time)
-            score[4] += 1
+            score[4] += add_score
         if co_name[0][0] == '军事':
             children5_list.append(add_time)
-            score[5] += 1
+            score[5] += add_score
         if co_name[0][0] == '健康教育':
             children6_list.append(add_time)
-            score[6] += 1
+            score[6] += add_score
         if co_name[0][0] == '数学':
             children7_list.append(add_time)
-            score[7] += 1
+            score[7] += add_score
         if co_name[0][0] == '物理':
             children8_list.append(add_time)
-            score[8] += 1
+            score[8] += add_score
         if co_name[0][0] == '计算机':
             children9_list.append(add_time)
-            score[9] += 1
+            score[9] += add_score
         if co_name[0][0] == '学科基础':
             children10_list.append(add_time)
-            score[10] += 1
+            score[10] += add_score
         if co_name[0][0] == '专业选修':
             children11_list.append(add_time)
-            score[11] += 1
+            score[11] += add_score
 
     children1['value'] = score[1]
     children2['value'] = score[2]
