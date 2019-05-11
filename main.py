@@ -299,7 +299,8 @@ def submit_train_place():
             finish_co += '0'
     print(finish_co)
     #print(array_finish)
-    sql = "UPDATE edu_stu_plan SET FINISHED_CO='%s'" %finish_co
+    stu_id = session.get('stu_id')
+    sql = "UPDATE edu_stu_plan SET FINISHED_CO='%s' WHERE STU_NO='%s'" % (finish_co,stu_id)
     query.update(sql)
     return jsonify(train_plan)
 
