@@ -17,7 +17,7 @@
 		<div class="index-tab">
 			<div class="index-slide-nav">
 				<a href="{{ url_for('login') }}">登录</a>
-				<a href="{{ url_for('register') }}" class="active">注册</a>
+				<a href="{{ url_for('register') }}" class="active">修改密码</a>
 				<div class="slide-bar slide-bar1"></div>				
 			</div>
 		</div>
@@ -28,18 +28,18 @@
                         <input type="text" name="stu_id" id="email" class="ipt" placeholder="输入您的学号" required>
                     </div>
                     <div class="group-ipt user">
-                        <input type="text" name="user" id="user" class="ipt" placeholder="选择一个用户名" required>
+                        <input type="password" name="user" id="user" class="ipt" placeholder="输入原密码" required>
                     </div>
                     <div class="group-ipt password">
-                        <input type="password" name="password" id="password" class="ipt" placeholder="设置登录密码" required>
+                        <input type="password" name="password" id="password" class="ipt" placeholder="输入新密码" required>
                     </div>
                     <div class="group-ipt password1">
-                        <input type="password" name="password1" id="password1" class="ipt" placeholder="重复密码" required>
+                        <input type="password" name="password1" id="password1" class="ipt" placeholder="重复新密码" required>
                     </div>
 
                 </div>
                 <div class="button">
-                    <button type="submit" class="login-btn register-btn" id="button">注册</button>
+                    <button type="submit" class="login-btn register-btn" id="button">修改</button>
                 </div>
             </div>
         </form>
