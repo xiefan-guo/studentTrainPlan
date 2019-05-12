@@ -66,17 +66,18 @@ def register():
             return u'两次输入密码不同，请检查'
         else:
             sql = "select * from STUDENT where STU_NO = '%s'" % stu_id
-            print(sql)
+            #print(sql)
             result = query.query(sql)
-            print(result)
-            if len(result) != 0:
-                return u'已经有这个用户了'
+            #print(result)
+            if len(result) == 0:
+                return u'没有这个用户了'
             else:
-                sql = "INSERT INTO STUDENT VALUES('%s', 'SEX', '%s', 'COLLEGE', 'MAJOR', 'AD_YEAR', '%s', 'ID')" % (user, stu_id, password)
-                # print(sql)
-                query.update(sql)
-                return redirect(url_for('login'))
-
+                if result[0][6] == user:
+                    sql = "UPDATE student SET PASSWORD='%s' WHERE STU_NO='%s'" % (password, stu_id)
+                    query.update(sql)
+                    return redirect(url_for('login'))
+                else:
+                    return u'密码错误'
 
 @app.route('/news_center', methods=['GET', 'POST'])
 def news_center():
@@ -153,91 +154,356 @@ def get_info():
 
     score = [0.0] * 15
 
+    add_time_list = []
+    for j in range(44):
+        add_time_list.append([])
+
     for co in finished_co:
         course_add = {}
         aid_str = str(aid)
         sql = "select CLASSIFICATION, START_TIME, CO_NAME, IS_MUST, CREDITS from education_plan WHERE CO_100='%s'" % aid_str
         co_name = query.query(sql)
-        # print(co_name)
+        print('数据库查询结果')
+        print(co_name)
         aid = aid + 1
-        add_time_list = []
         add_is_list = []
 
         add_curse = {}
         add_is = {}
-        add_time = {}
 
         add_score = float(co_name[0][4])
+
         if co == '0':
             #print(co_name)
             add_curse['name'] = co_name[0][2]
             add_curse['itemStyle'] = {'borderColor': 'red'}
             add_curse['value'] = add_score
 
-            add_is['name'] = str(co_name[0][3])
+            if co_name[0][3] == 1:
+                add_is['name'] = '必修'
+            else:
+                add_is['name'] = '选修'
+
             add_is_list.append(add_curse)
             add_is['children'] = add_is_list
-            add_time['name'] = str(co_name[0][1])
-            add_time_list.append(add_is)
-            add_time['children'] = add_time_list
+            # add_time['name'] = str(co_name[0][1])
+            # add_time_list.append(add_is)
+            # add_time['children'] = add_time_list
         else:
             add_curse['name'] = co_name[0][2]
             add_curse['itemStyle'] = {'borderColor': 'green'}
             add_curse['value'] = add_score
 
-            add_is['name'] = str(co_name[0][3])
+            if co_name[0][3] == 1:
+                add_is['name'] = '必修'
+            else:
+                add_is['name'] = '选修'
+
             add_is_list.append(add_curse)
             add_is['children'] = add_is_list
-            add_time['name'] = str(co_name[0][1])
-            add_time_list.append(add_is)
-            add_time['children'] = add_time_list
+            # add_time['name'] = str(co_name[0][1])
+            # add_time_list.append(add_is)
+            # add_time['children'] = add_time_list
 
-
+        str_co_time = str(co_name[0][1])
         if co_name[0][0] == '思想政治理论':
-            children1_list.append(add_time)
-            score[1] += add_score
+            if str_co_time[3] == '6':
+                add_time_list[0].append(add_is)
+            if str_co_time[3] == '7':
+                add_time_list[1].append(add_is)
+            if str_co_time[3] == '8':
+                add_time_list[2].append(add_is)
+            if str_co_time[3] == '9':
+                add_time_list[3].append(add_is)
         if co_name[0][0] == '外语':
-            children2_list.append(add_time)
-            score[2] += add_score
+            if str_co_time[3] == '6':
+                add_time_list[4].append(add_is)
+            if str_co_time[3] == '7':
+                add_time_list[5].append(add_is)
+            if str_co_time[3] == '8':
+                add_time_list[6].append(add_is)
+            if str_co_time[3] == '9':
+                add_time_list[7].append(add_is)
         if co_name[0][0] == '文化素质教育必修':
-            children3_list.append(add_time)
-            score[3] += add_score
+            if str_co_time[3] == '6':
+                add_time_list[8].append(add_is)
+            if str_co_time[3] == '7':
+                add_time_list[9].append(add_is)
+            if str_co_time[3] == '8':
+                add_time_list[10].append(add_is)
+            if str_co_time[3] == '9':
+                add_time_list[11].append(add_is)
         if co_name[0][0] == '体育':
-            children4_list.append(add_time)
-            score[4] += add_score
+            if str_co_time[3] == '6':
+                add_time_list[12].append(add_is)
+            if str_co_time[3] == '7':
+                add_time_list[13].append(add_is)
+            if str_co_time[3] == '8':
+                add_time_list[14].append(add_is)
+            if str_co_time[3] == '9':
+                add_time_list[15].append(add_is)
         if co_name[0][0] == '军事':
-            children5_list.append(add_time)
-            score[5] += add_score
+            if str_co_time[3] == '6':
+                add_time_list[16].append(add_is)
+            if str_co_time[3] == '7':
+                add_time_list[17].append(add_is)
+            if str_co_time[3] == '8':
+                add_time_list[18].append(add_is)
+            if str_co_time[3] == '9':
+                add_time_list[19].append(add_is)
         if co_name[0][0] == '健康教育':
-            children6_list.append(add_time)
-            score[6] += add_score
+            if str_co_time[3] == '6':
+                add_time_list[20].append(add_is)
+            if str_co_time[3] == '7':
+                add_time_list[21].append(add_is)
+            if str_co_time[3] == '8':
+                add_time_list[22].append(add_is)
+            if str_co_time[3] == '9':
+                add_time_list[23].append(add_is)
         if co_name[0][0] == '数学':
-            children7_list.append(add_time)
-            score[7] += add_score
+            if str_co_time[3] == '6':
+                add_time_list[24].append(add_is)
+            if str_co_time[3] == '7':
+                add_time_list[25].append(add_is)
+            if str_co_time[3] == '8':
+                add_time_list[26].append(add_is)
+            if str_co_time[3] == '9':
+                add_time_list[27].append(add_is)
         if co_name[0][0] == '物理':
-            children8_list.append(add_time)
-            score[8] += add_score
+            if str_co_time[3] == '6':
+                add_time_list[28].append(add_is)
+            if str_co_time[3] == '7':
+                add_time_list[29].append(add_is)
+            if str_co_time[3] == '8':
+                add_time_list[30].append(add_is)
+            if str_co_time[3] == '9':
+                add_time_list[31].append(add_is)
         if co_name[0][0] == '计算机':
-            children9_list.append(add_time)
-            score[9] += add_score
+            if str_co_time[3] == '6':
+                add_time_list[32].append(add_is)
+            if str_co_time[3] == '7':
+                add_time_list[33].append(add_is)
+            if str_co_time[3] == '8':
+                add_time_list[34].append(add_is)
+            if str_co_time[3] == '9':
+                add_time_list[35].append(add_is)
         if co_name[0][0] == '学科基础':
-            children10_list.append(add_time)
-            score[10] += add_score
+            if str_co_time[3] == '6':
+                add_time_list[36].append(add_is)
+            if str_co_time[3] == '7':
+                add_time_list[37].append(add_is)
+            if str_co_time[3] == '8':
+                add_time_list[38].append(add_is)
+            if str_co_time[3] == '9':
+                add_time_list[39].append(add_is)
         if co_name[0][0] == '专业选修':
-            children11_list.append(add_time)
-            score[11] += add_score
+            if str_co_time[3] == '6':
+                add_time_list[40].append(add_is)
+            if str_co_time[3] == '7':
+                add_time_list[41].append(add_is)
+            if str_co_time[3] == '8':
+                add_time_list[42].append(add_is)
+            if str_co_time[3] == '9':
+                add_time_list[43].append(add_is)
 
-    children1['value'] = score[1]
-    children2['value'] = score[2]
-    children3['value'] = score[3]
-    children4['value'] = score[4]
-    children5['value'] = score[5]
-    children6['value'] = score[6]
-    children7['value'] = score[7]
-    children8['value'] = score[8]
-    children9['value'] = score[9]
-    children10['value'] = score[10]
-    children11['value'] = score[11]
+    add_time = {}
+    add_time['name'] = '2016'
+    add_time['children'] = add_time_list[0]
+    children1_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2017'
+    add_time['children'] = add_time_list[1]
+    children1_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2018'
+    add_time['children'] = add_time_list[2]
+    children1_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2019'
+    add_time['children'] = add_time_list[3]
+    children1_list.append(add_time)
+
+    add_time = {}
+    add_time['name'] = '2016'
+    add_time['children'] = add_time_list[4]
+    children2_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2017'
+    add_time['children'] = add_time_list[5]
+    children2_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2018'
+    add_time['children'] = add_time_list[6]
+    children2_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2019'
+    add_time['children'] = add_time_list[7]
+    children2_list.append(add_time)
+
+    add_time = {}
+    add_time['name'] = '2016'
+    add_time['children'] = add_time_list[8]
+    children3_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2017'
+    add_time['children'] = add_time_list[9]
+    children3_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2018'
+    add_time['children'] = add_time_list[10]
+    children3_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2019'
+    add_time['children'] = add_time_list[11]
+    children3_list.append(add_time)
+
+    add_time = {}
+    add_time['name'] = '2016'
+    add_time['children'] = add_time_list[12]
+    children4_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2017'
+    add_time['children'] = add_time_list[13]
+    children4_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2018'
+    add_time['children'] = add_time_list[14]
+    children4_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2019'
+    add_time['children'] = add_time_list[15]
+    children4_list.append(add_time)
+
+    add_time = {}
+    add_time['name'] = '2016'
+    add_time['children'] = add_time_list[16]
+    children5_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2017'
+    add_time['children'] = add_time_list[17]
+    children5_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2018'
+    add_time['children'] = add_time_list[18]
+    children5_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2019'
+    add_time['children'] = add_time_list[19]
+    children5_list.append(add_time)
+
+    add_time = {}
+    add_time['name'] = '2016'
+    add_time['children'] = add_time_list[20]
+    children6_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2017'
+    add_time['children'] = add_time_list[21]
+    children6_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2018'
+    add_time['children'] = add_time_list[22]
+    children6_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2019'
+    add_time['children'] = add_time_list[23]
+    children6_list.append(add_time)
+
+    add_time = {}
+    add_time['name'] = '2016'
+    add_time['children'] = add_time_list[24]
+    children7_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2017'
+    add_time['children'] = add_time_list[25]
+    children7_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2018'
+    add_time['children'] = add_time_list[26]
+    children7_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2019'
+    add_time['children'] = add_time_list[27]
+    children7_list.append(add_time)
+
+    add_time = {}
+    add_time['name'] = '2016'
+    add_time['children'] = add_time_list[28]
+    children8_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2017'
+    add_time['children'] = add_time_list[29]
+    children8_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2018'
+    add_time['children'] = add_time_list[30]
+    children8_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2019'
+    add_time['children'] = add_time_list[31]
+    children8_list.append(add_time)
+
+    add_time = {}
+    add_time['name'] = '2016'
+    add_time['children'] = add_time_list[32]
+    children9_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2017'
+    add_time['children'] = add_time_list[33]
+    children9_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2018'
+    add_time['children'] = add_time_list[34]
+    children9_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2019'
+    add_time['children'] = add_time_list[35]
+    children9_list.append(add_time)
+
+    add_time = {}
+    add_time['name'] = '2016'
+    add_time['children'] = add_time_list[36]
+    children10_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2017'
+    add_time['children'] = add_time_list[37]
+    children10_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2018'
+    add_time['children'] = add_time_list[38]
+    children10_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2019'
+    add_time['children'] = add_time_list[39]
+    children10_list.append(add_time)
+
+    add_time = {}
+    add_time['name'] = '2016'
+    add_time['children'] = add_time_list[40]
+    children11_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2017'
+    add_time['children'] = add_time_list[41]
+    children11_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2018'
+    add_time['children'] = add_time_list[42]
+    children11_list.append(add_time)
+    add_time = {}
+    add_time['name'] = '2019'
+    add_time['children'] = add_time_list[43]
+    children11_list.append(add_time)
+
+    children1['value'] = 16
+    children2['value'] = 8
+    children3['value'] = 5.5
+    children4['value'] = 4
+    children5['value'] = 5
+    children6['value'] = 0.5
+    children7['value'] = 21.5
+    children8['value'] = 9
+    children9['value'] = 4.0
+    children10['value'] = 24.5
+    children11['value'] = 21.5
 
     children1['children'] = children1_list
     children2['children'] = children2_list
@@ -263,6 +529,7 @@ def get_info():
     children.append(children10)
     children.append(children11)
     data['children'] = children
+
     #data = {'name': '数据转换成功', 'children': [{'name': '123123123', 'children': [{'name': 'FlareVis', 'value': 4116, 'itemStyle': {'borderColor': 'red'}}]}, {'name': 'scale', 'children': [{'name': 'TimeScale', 'value': 5833, 'categories': 1, 'itemStyle': {'borderColor': 'red'}}]}, {'name': 'display', 'children': [{'name': 'DirtySprite', 'value': 8833, 'itemStyle': {'borderColor': 'red'}}]}]}
     print(data)
     return jsonify(data)
