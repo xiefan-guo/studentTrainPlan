@@ -116,13 +116,15 @@ setInterval(function(){
         subjects2ExistScore[subjects[sub]] = perExistScore;
         subjects2AddScore[subjects[sub]] = perAddScore;
     }
-    var TotalScore = 0;
+    var TotalScore = 0; //total记录的是总共需要的学分
     var TotalExistScore = 0;
     var TotalAddScore = 0;
     for(var i=0; i<subjects.length; i++){
         TotalScore += subjects2TotalScore[subjects[i]];
-        TotalExistScore += subjects2ExistScore[subjects[i]];
-        TotalAddScore += subjects2AddScore[subjects[i]];
+        TotalExistScore += Math.min(subjects2ExistScore[subjects[i]],subjects2TotalScore[subjects[i]]);
+        if(subjects2TotalScore[subjects[i]] - subjects2ExistScore[subjects[i]] > 0)
+            TotalAddScore += Math.min(subjects2TotalScore[subjects[i]]-subjects2ExistScore[subjects[i]], subjects2AddScore[subjects[i]]);
+       
     }
 
 
@@ -137,9 +139,11 @@ setInterval(function(){
     var greenWidth, yellowWidth;
     var doms = document.getElementsByClassName("process-parent1")[0].children;
     greenWidth = (TotalExistScore*100/TotalScore).toFixed(2);
+    greenWidth =  Math.min(100, greenWidth);
     yellowWidth = (TotalAddScore*100/TotalScore).toFixed(2);
+    yellowWidth = Math.min(100-greenWidth, yellowWidth)
     doms[0].style.width = greenWidth + "%";
-    doms[1].style.width = Math.min(100-greenWidth, yellowWidth) + "%";
+    doms[1].style.width = yellowWidth + "%";
     dom = document.getElementById("on1");
     dom.textContent = TotalExistScore + '/' + TotalScore;
 
@@ -151,9 +155,11 @@ setInterval(function(){
         TotalAddScore = subjects2AddScore[subjects[idx]];
         var doms = document.getElementsByClassName(processes[idx])[0].children;
         greenWidth = (TotalExistScore*100/TotalScore).toFixed(2);
+        greenWidth =  Math.min(100, greenWidth);
         yellowWidth = (TotalAddScore*100/TotalScore).toFixed(2);
+        yellowWidth = Math.min(100-greenWidth, yellowWidth)
         doms[0].style.width = greenWidth + "%";
-        doms[1].style.width = Math.min(100-greenWidth, yellowWidth) + "%";
+        doms[1].style.width = yellowWidth + "%";
         dom = document.getElementById(pLabels[idx]);
         dom.textContent = TotalExistScore + '/' + TotalScore;
     }
