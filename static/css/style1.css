@@ -699,3 +699,14 @@ a:active, a:focus {
 		text-align: center;
 		color: #fff;
 	}
+
+	.bg-success{
+		background: green;
+		color: green;
+	}
+	.progress-bar .bg-warning {
+		background: yellow;
+	}
+	.progress-bar, .bg-danger{
+		background: red;
+	}

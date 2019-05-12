@@ -1,28 +1,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="../static/css/style1.css" rel="stylesheet" type="text/css" />
-<script src="../static/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-<script src="../static/js/jquery.js"></script>
-<script src="../static/js/jquery.superslide.2.1.1.js" type="text/javascript"></script>
-<script src="../static/js/actions.js" type="text/javascript"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
-<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=aGaH4Ko0BgRvzly3OQFwWhOxFfX4Tl4z"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="../static/css/style1.css" rel="stylesheet" type="text/css" />
+    <script src="../static/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/jquery.superslide.2.1.1.js" type="text/javascript"></script>
+    <script src="../static/js/actions.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
 
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<title>培养计划</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <title>培养计划</title>
 <body>
 <div class="wapper_box">
     <div class="header_box"></div>
@@ -47,7 +50,6 @@
             $(".nav_1").mouseenter(function(){
                 $(this).find(".nav_slide").slideDown()
             });
-
             $(".nav_1").mouseleave(function(){
                 $(".nav_slide").slideUp()
             });
@@ -77,62 +79,86 @@
                 <ul class="info_news_text info_news_text1 ">
                     <p class="info1"> 总进度</p>
                     <div class="process-parent1">
-                        <div class="process-son" id="bar1" style="width: 40%;"><p class="on2" id="on1">40%</p>
+                        <div class="progress-bar bg-success" style="width:40%"><p class="on2" id="on1">50%</p>
+                        </div>
+                        <div class="progress-bar bg-warning" style="width:10%">
                         </div>
                     </div>
                     <p class="info2"> 思想政治</p>
                     <div class="process-parent2">
-                        <div class="process-son" id="bar2" style="width: 20%;"><p class="on2" id="on2">50%</p>
+                        <div class="progress-bar bg-success" style="width:40%"><p class="on2" id="on2">50%</p>
+                        </div>
+                        <div class="progress-bar bg-warning" style="width:10%">
                         </div>
                     </div>
                     <p class="info3"> 外语</p>
                     <div class="process-parent3">
-                        <div class="process-son" id="bar3" style="width: 60%;"><p class="on2" id="on3">60%</p>
+                        <div class="progress-bar bg-success" style="width:40%"><p class="on2" id="on3">50%</p>
+                        </div>
+                        <div class="progress-bar bg-warning" style="width:10%">
                         </div>
                     </div>
                     <p class="info4"> 文化素质</p>
                     <div class="process-parent4">
-                        <div class="process-son" id="bar4" style="width: 20%;"><p class="on2" id = "on4">20%</p>
+                        <div class="progress-bar bg-success" style="width:40%"><p class="on2" id="on4">50%</p>
+                        </div>
+                        <div class="progress-bar bg-warning" style="width:10%">
                         </div>
                     </div>
                     <p class="info5"> 体育</p>
                     <div class="process-parent5">
-                        <div class="process-son" id="bar5" style="width: 20%;"><p class="on2" id = "on5">40%</p>
+                        <div class="progress-bar bg-success" style="width:40%"><p class="on2" id="on5">50%</p>
+                        </div>
+                        <div class="progress-bar bg-warning" style="width:10%">
                         </div>
                     </div>
                     <p class="info6"> 军事</p>
                     <div class="process-parent6">
-                        <div class="process-son" id="bar6" style="width: 50%;"><p class="on2" id = "on6">50%</p>
+                        <div class="progress-bar bg-success" style="width:40%"><p class="on2" id="on6">50%</p>
+                        </div>
+                        <div class="progress-bar bg-warning" style="width:10%">
                         </div>
                     </div>
                     <p class="info7"> 健康教育</p>
                     <div class="process-parent7">
-                        <div class="process-son" id="bar7" style="width: 60%;"><p class="on2" id = "on7">60%</p>
+                        <div class="progress-bar bg-success" style="width:40%"><p class="on2" id="on7">50%</p>
+                        </div>
+                        <div class="progress-bar bg-warning" style="width:10%">
                         </div>
                     </div>
                     <p class="info8"> 数学</p>
                     <div class="process-parent8">
-                        <div class="process-son" id="bar8" style="width: 70%;"><p class="on2" id = "on8">70%</p>
+                        <div class="progress-bar bg-success" style="width:40%"><p class="on2" id="on8">50%</p>
+                        </div>
+                        <div class="progress-bar bg-warning" style="width:10%">
                         </div>
                     </div>
                     <p class="info9"> 物理</p>
                     <div class="process-parent9">
-                        <div class="process-son" id="bar9" style="width: 50%;"><p class="on2" id = "on9">50%</p>
+                        <div class="progress-bar bg-success" style="width:40%"><p class="on2" id="on9">50%</p>
+                        </div>
+                        <div class="progress-bar bg-warning" style="width:10%">
                         </div>
                     </div>
                     <p class="info10"> 计算机</p>
                     <div class="process-parent10">
-                        <div class="process-son" id="bar10" style="width: 60%;"><p class="on2" id = "on10">60%</p>
+                        <div class="progress-bar bg-success" style="width:40%"><p class="on2" id="on10">50%</p>
+                        </div>
+                        <div class="progress-bar bg-warning" style="width:10%">
                         </div>
                     </div>
                     <p class="info11"> 学科基础</p>
                     <div class="process-parent11">
-                        <div class="process-son" id="bar11" style="width: 70%;"><p class="on2" id = "on11">70%</p>
+                        <div class="progress-bar bg-success" style="width:40%"><p class="on2" id="on11">50%</p>
+                        </div>
+                        <div class="progress-bar bg-warning" style="width:10%">
                         </div>
                     </div>
                     <p class="info12"> 专业选修</p>
                     <div class="process-parent12">
-                        <div class="process-son" id="bar12" style="width: 70%;"><p class="on2" id = "on12">70%</p>
+                        <div class="progress-bar bg-success" style="width:40%"><p class="on2" id="on12">50%</p>
+                        </div>
+                        <div class="progress-bar bg-warning" style="width:10%">
                         </div>
                     </div>
                     <div class="submit">
@@ -156,7 +182,6 @@
                         $(".info_news_text").hide(400).eq(n).show(500);
                     });
                 });
-
             </script>
         </div>
     </ul>

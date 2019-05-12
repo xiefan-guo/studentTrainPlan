@@ -17,6 +17,10 @@ function clickFun(param) {
             param.data.itemStyle.borderColor = 'red';
             param.data.itemStyle.Color = 'red';
         }
+        else{
+            param.data.itemStyle.borderColor = 'red';
+            param.data.itemStyle.Color = 'red';
+        }
         myChart.setOption({});
         console.log(param.data.itemStyle.borderColor);
     }
@@ -126,26 +130,31 @@ setInterval(function(){
     var processes = [];
     var pLabels = [];
     for(var i=2; i< subjects.length+2; i++){
-        processes.push("bar"+i.toString());
+        processes.push("process-parent"+i.toString());
         pLabels.push("on" + i.toString());
     }
     // 更新总进度条
-    var width;
-    var dom = document.getElementById("bar1");
-    width = (TotalExistScore*100/TotalScore).toFixed(2);
-    dom.style.width = width + "%";
+    var greenWidth, yellowWidth;
+    var doms = document.getElementsByClassName("process-parent1")[0].children;
+    greenWidth = (TotalExistScore*100/TotalScore).toFixed(2);
+    yellowWidth = (TotalAddScore*100/TotalScore).toFixed(2);
+    doms[0].style.width = greenWidth + "%";
+    doms[1].style.width = Math.min(100-greenWidth, yellowWidth) + "%";
     dom = document.getElementById("on1");
-    dom.textContent = width + "%";
+    dom.textContent = TotalExistScore + '/' + TotalScore;
 
     // 设置各个子进度条
 
     for(var idx=0; idx<processes.length; idx++){
         TotalScore = subjects2TotalScore[subjects[idx]];
         TotalExistScore = subjects2ExistScore[subjects[idx]];
-        dom = document.getElementById(processes[idx]);
-        width = (TotalExistScore*100/TotalScore).toFixed(2);
-        dom.style.width = width + "%";
+        TotalAddScore = subjects2AddScore[subjects[idx]];
+        var doms = document.getElementsByClassName(processes[idx])[0].children;
+        greenWidth = (TotalExistScore*100/TotalScore).toFixed(2);
+        yellowWidth = (TotalAddScore*100/TotalScore).toFixed(2);
+        doms[0].style.width = greenWidth + "%";
+        doms[1].style.width = Math.min(100-greenWidth, yellowWidth) + "%";
         dom = document.getElementById(pLabels[idx]);
-        dom.textContent = width + "%";
+        dom.textContent = TotalExistScore + '/' + TotalScore;
     }
 }, 1)
