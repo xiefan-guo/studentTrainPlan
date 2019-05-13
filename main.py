@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, flash,  jsonify, redirect,url_for,session
 from utils import query
-
+import json
 import os
 # 创建flask对象
 app = Flask(__name__)
@@ -102,10 +102,7 @@ def personal_information():
 def train_plan():
     return render_template('train_plan.html')
 
-
-@app.route('/get_info', methods=['GET', 'POST'])
-def get_info():
-    stu_id = session.get('stu_id')
+def getJson(stu_id):
     print(stu_id)
     sql = "select FINISHED_CO from EDU_STU_PLAN WHERE STU_NO='%s'" % stu_id
     result = query.query(sql)
@@ -529,8 +526,13 @@ def get_info():
     children.append(children10)
     children.append(children11)
     data['children'] = children
+    return data
 
+@app.route('/get_info', methods=['GET', 'POST'])
+def get_info():
+    stu_id = session.get('stu_id')
     #data = {'name': '数据转换成功', 'children': [{'name': '123123123', 'children': [{'name': 'FlareVis', 'value': 4116, 'itemStyle': {'borderColor': 'red'}}]}, {'name': 'scale', 'children': [{'name': 'TimeScale', 'value': 5833, 'categories': 1, 'itemStyle': {'borderColor': 'red'}}]}, {'name': 'display', 'children': [{'name': 'DirtySprite', 'value': 8833, 'itemStyle': {'borderColor': 'red'}}]}]}
+    data = getJson(stu_id)
     print(data)
     return jsonify(data)
 
@@ -573,6 +575,10 @@ def submit_train_place():
     stu_id = session.get('stu_id')
     sql = "UPDATE edu_stu_plan SET FINISHED_CO='%s' WHERE STU_NO='%s'" % (finish_co,stu_id)
     query.update(sql)
+
+    train_plan_str = json.dumps(train_plan) # 将黄色变为绿色
+    train_plan_str = train_plan_str.replace("yellow", "green")
+    train_plan = json.loads(train_plan_str)
     return jsonify(train_plan)
 
 
