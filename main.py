@@ -108,7 +108,7 @@ def get_info():
     :return: planTree:(json) 计划树所需数据
     """
     stu_id = session.get('stu_id')
-    planTree = query.getTrainPlanJson(stu_id)
+    planTree = query.getPlanTreeJson(stu_id)
     return jsonify(planTree)
 
 @app.route('/submit_train_plan', methods=['GET', 'POST'])

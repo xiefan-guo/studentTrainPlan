@@ -38,7 +38,7 @@ def update(sql):
     cur.close()
     db.close()
 
-def getTrainPlanJson(stu_id):
+def getPlanTreeJson(stu_id):
     """
     功能: 传入学生stu_id,然后利用stu_id从数据库查询得到该学生选课信息，再转换为计划树所需的json格式
     :param stu_id: 唯一标识学生的id号
