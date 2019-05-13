@@ -44,7 +44,7 @@ $.getJSON('/get_info', function(data)
                 bottom: '20%',
 
                 symbol: 'emptyCircle',
-                symbolSize: 13,
+                symbolSize: 10,
                 orient: 'vertical',
                 initialTreeDepth: 4,
                 expandAndCollapse: true,
@@ -124,7 +124,7 @@ setInterval(function(){
         TotalExistScore += Math.min(subjects2ExistScore[subjects[i]],subjects2TotalScore[subjects[i]]);
         if(subjects2TotalScore[subjects[i]] - subjects2ExistScore[subjects[i]] > 0)
             TotalAddScore += Math.min(subjects2TotalScore[subjects[i]]-subjects2ExistScore[subjects[i]], subjects2AddScore[subjects[i]]);
-       
+
     }
 
 
