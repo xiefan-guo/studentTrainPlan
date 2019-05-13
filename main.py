@@ -109,7 +109,7 @@ def get_info():
     print(stu_id)
     sql = "select FINISHED_CO from EDU_STU_PLAN WHERE STU_NO='%s'" % stu_id
     result = query.query(sql)
-#    print(result)
+    print(result)
     finished_co = result[0][0]
     print(finished_co)
 
@@ -163,8 +163,8 @@ def get_info():
         aid_str = str(aid)
         sql = "select CLASSIFICATION, START_TIME, CO_NAME, IS_MUST, CREDITS from education_plan WHERE CO_100='%s'" % aid_str
         co_name = query.query(sql)
-        print('数据库查询结果')
-        print(co_name)
+        #print('数据库查询结果')
+        #print(co_name)
         aid = aid + 1
         add_is_list = []
 
@@ -539,24 +539,29 @@ def get_info():
 def submit_train_place():
     train_plan = request.get_json(force=True)
     #train_plan['name'] = "数据转换成功"
+    print('反馈回来的数据是：')
     print(train_plan)
     data = train_plan['children']
     array_finish = [0]*120
     print(array_finish)
     for data_children in data:
         data_children = data_children['children']
-        for data_children_child in data_children:
-            name = data_children_child['children'][0]['children'][0]['name']
-            color = data_children_child['children'][0]['children'][0]['itemStyle']['borderColor']
-            #print(name, color)
-            sql = "select CO_100 from education_plan WHERE CO_NAME='%s'" % name
-            co_100 = query.query(sql)
-            co_100 = co_100[0][0]
+        print(data_children)
+        for data_children_child_1 in data_children:
+            #print('data_children_child', data_children_child)
+            data_children_child_1 = data_children_child_1['children']
+            for data_children_child in data_children_child_1:
+                name = data_children_child['children'][0]['name']
+                color = data_children_child['children'][0]['itemStyle']['borderColor']
+                #print(name, color)
+                sql = "select CO_100 from education_plan WHERE CO_NAME='%s'" % name
+                co_100 = query.query(sql)
+                co_100 = co_100[0][0]
 
-            if color == 'red':
-                array_finish[int(co_100)] = 0
-            else:
-                array_finish[int(co_100)] = 1
+                if color == 'red':
+                    array_finish[int(co_100)] = 0
+                else:
+                    array_finish[int(co_100)] = 1
     finish_co = ''
     for i in range(1, 119):
         if array_finish[i] == 1:
