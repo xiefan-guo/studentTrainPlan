@@ -87,6 +87,10 @@ def news_center():
 
 @app.route('/personal_information', methods=['GET', 'POST'])
 def personal_information():
+    """
+    功能(个人中心界面): 根据"stu_id"从数据库中得到学生基本信息，用于个人中心信息显示
+    :return:
+    """
     stu_no = session.get('stu_id')
     print(stu_no + ' is stu_no')
     sql = "SELECT * FROM student WHERE STU_NO = '%s'" % stu_no
@@ -99,16 +103,27 @@ def train_plan():
 
 @app.route('/get_info', methods=['GET', 'POST'])
 def get_info():
+    """
+    功能(培养计划界面): 初始进入培养计划界面，根据stu_id从数据库中得到数据并将其转换为计划树所需json格式数据
+    :return: planTree:(json) 计划树所需数据
+    """
     stu_id = session.get('stu_id')
-    data = query.getTrainPlanJson(stu_id)
-    return jsonify(data)
+    planTree = query.getTrainPlanJson(stu_id)
+    return jsonify(planTree)
 
 @app.route('/submit_train_plan', methods=['GET', 'POST'])
 def submit_train_place():
+    """
+    功能1：实现数据库学生选课信息的更新
+    功能2: 实现计划树以及进度条的提交更新。
+    :return:
+    """
+    """功能1："""
     train_plan = request.get_json(force=True)
     stu_id = session.get('stu_id')
     query.updateDatabase(stu_id, train_plan)
 
+    """功能2："""
     train_plan_str = json.dumps(train_plan)
     train_plan_str = train_plan_str.replace("yellow", "green")
     train_plan = json.loads(train_plan_str)
