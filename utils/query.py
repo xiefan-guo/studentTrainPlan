@@ -24,6 +24,7 @@ def query(sql):
     db.close()
     return result
 
+
 def update(sql):
     """
     功能; 使用sql语句更新数据库中学生选课信息。
