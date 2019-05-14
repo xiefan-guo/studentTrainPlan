@@ -31,21 +31,11 @@ def get_matrix(map_student, map_course):
     for i in range(30):
         stu_no = map_student[i][1]
         #print(stu_no)
+        sql="SELECT COMMENT FROM CHOOSE WHERE STU_NO='%s'" % (stu_no)
+        score=query(sql)
+        #print(score)
         for j in range(118):
-            #print(map_course[j])
-            sql="SELECT CO_NO FROM EDUCATION_PLAN WHERE CO_NAME='%s'" % map_course[j]
-            stu_id = query(sql)
-            stu_id=stu_id[0][0]
-            #print(stu_id)
-            sql="SELECT COMMENT FROM CHOOSE WHERE STU_NO='%s' AND CO_NO='%s'" % (stu_no, stu_id)
-            score=query(sql)
-            if len(score)==0:
-                score=0
-            else:
-                score=score[0][0]
-                score=int(score)
-            #print(score)
-            matrix[i].append(score)
+            matrix[i].append(int(score[j][0]))
 
     return matrix
 
