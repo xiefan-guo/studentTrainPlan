@@ -11,6 +11,93 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/manager', methods=['GET', 'POST'])
+def manager():
+    sql = "select * from STUDENT"
+    result = query.query(sql)
+    return render_template('manager.html', result=result)
+
+
+@app.route('/managerAdd', methods=['GET', 'POST'])
+def managerAdd():
+    stu_id = session.get('stu_id')
+    #print(stu_id)
+    if stu_id == 'admin':
+        if request.method == 'GET':
+            #print('1111')
+            return  render_template('managerAdd.html')
+        else:
+            #print('222')
+            name = request.form.get('name')
+            sex = request.form.get('sex')
+            stu_no = request.form.get('stu_no')
+            college = request.form.get('college')
+            major = request.form.get('major')
+            ad_year = request.form.get('ad_year')
+            password = request.form.get('password')
+            sql="INSERT INTO STUDENT VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')" % (name,sex,stu_no,college,major,ad_year,password,stu_no)
+            #print(sql)
+            query.update(sql)
+            return redirect(url_for('manager'))
+    else:
+        return u'页面不存在'
+
+
+@app.route('/managerDelete', methods=['GET', 'POST'])
+def managerDelete():
+    stu_id = session.get('stu_id')
+    #print(stu_id)
+    if stu_id == 'admin':
+        if request.method == 'GET':
+            #print('1111')
+            return render_template('managerDelete.html')
+        else:
+            #print('222')
+            stu_no = request.form.get('stu_no')
+            sql="DELETE FROM STUDENT WHERE STU_NO='%s'" % stu_no
+            #print(sql)
+            query.update(sql)
+            return redirect(url_for('manager'))
+    else:
+        return u'页面不存在'
+
+
+@app.route('/managerEdit', methods=['GET', 'POST'])
+def managerEdit():
+    stu_id = session.get('stu_id')
+    if stu_id == 'admin':
+        if request.method == 'GET':
+            return render_template('managerEdit.html')
+        else:
+            stu_no = request.form.get('stu_no')
+            name = request.form.get('name')
+            sex = request.form.get('sex')
+            college = request.form.get('college')
+            major = request.form.get('major')
+            ad_year = request.form.get('ad_year')
+            password = request.form.get('password')
+
+            sql="select * from STUDENT WHERE STU_NO='%s'" % stu_no
+            result=query.query(sql)
+            if name=='':
+                name=result[0][0]
+            if sex=='':
+                sex=result[0][1]
+            if college=='':
+                college=result[0][3]
+            if major=='':
+                major=result[0][4]
+            if ad_year=='':
+                ad_year=result[0][5]
+
+            sql="UPDATE STUDENT SET NAME='%s',SEX='%s',COLLEGE='%s',MAJOR='%s',AD_YEAR='%s',PASSWORD='%s',ID='%s' WHERE STU_NO='%s'" % (name, sex, college, major, ad_year, password, stu_no, stu_no)
+            #print(sql)
+            query.update(sql)
+            return redirect(url_for('manager'))
+    else:
+        return u'页面不存在'
+
+
 @app.route('/course_discussion', methods=['GET', 'POST'])
 def course_discussion():
     if request.method == 'GET':
@@ -18,11 +105,15 @@ def course_discussion():
     else:
         topic = request.form.get('topic')
         comments = request.form.get('comments')
-        commenter = request.form.get('commenter')
+        #commenter = request.form.get('commenter')
         # print(len(topic))
         # print('course_discussion')
         # print(topic, commenter, comments)
-        sql = "INSERT INTO NEWS(TOPIC, COMMENTS, COMMENTER) VALUES ('%s', '%s', '%s')" % (topic, comments, commenter)
+        stu_id = session.get('stu_id')
+        sql = "select NAME from STUDENT where STU_NO = '%s'" % stu_id
+        stu_name = query.query(sql)
+        stu_name = stu_name[0][0]
+        sql = "INSERT INTO NEWS(TOPIC, COMMENTS, COMMENTER) VALUES ('%s', '%s', '%s')" % (topic, comments, stu_name)
         print(sql)
         query.update(sql)
         return redirect(url_for('news_center'))
@@ -44,7 +135,10 @@ def login():
             if result[0][6] == password:
                 session['stu_id'] = result[0][2]
                 session.permanent=True
-                return redirect(url_for('index'))
+                if stu_id=='admin':
+                    return redirect(url_for('manager'))
+                else:
+                    return redirect(url_for('index'))
             else:
                 return u'账号或密码错误'
         else:
@@ -78,6 +172,7 @@ def register():
                     return redirect(url_for('login'))
                 else:
                     return u'密码错误'
+
 
 @app.route('/news_center', methods=['GET', 'POST'])
 def news_center():
@@ -543,10 +638,10 @@ def submit_train_place():
     print(train_plan)
     data = train_plan['children']
     array_finish = [0]*120
-    print(array_finish)
+    #print(array_finish)
     for data_children in data:
         data_children = data_children['children']
-        print(data_children)
+        #print(data_children)
         for data_children_child_1 in data_children:
             #print('data_children_child', data_children_child)
             data_children_child_1 = data_children_child_1['children']
