@@ -84,6 +84,9 @@ def news_center():
     print(result)
     return render_template('news_center.html', result=result)
 
+@app.route('/recommed', methods=['GET', 'POST'])
+def recommed():
+    return render_template('recommed.html')
 
 @app.route('/personal_information', methods=['GET', 'POST'])
 def personal_information():

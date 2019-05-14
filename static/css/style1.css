@@ -710,3 +710,15 @@ a:active, a:focus {
 	.progress-bar, .bg-danger{
 		background: red;
 	}
+
+	.recommed_course{
+		position: absolute;
+		margin-top:100px;
+		margin-left:200px;
+	}
+
+	.recommed_person{
+		position: absolute;
+		margin-top:100px;
+		margin-left:1200px;
+	}

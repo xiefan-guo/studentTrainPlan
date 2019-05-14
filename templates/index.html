@@ -25,7 +25,8 @@
                  </div>
                </div>
              </li>
-             <li class="nav_1"><a class="nav_but" href="{{ url_for('train_plan') }}">培养计划</a></li>
+             <li class="nav_1"><a class="nav_but" href="{{ url_for('recommed') }}">课程推荐</a></li>
+             <li class="nav_1"><a class="nav_but" href="{{ url_for('train_plan') }}">课程进度</a></li>
              <li class="nav_1"><a class="nav_but" href="{{ url_for('index') }}">首页</a></li>
          </ul>
     </div>
@@ -80,7 +81,7 @@
         <h3 class="obj_title" onclick="get_info()" >课程进度</h3>
       </li>
       <li>
-        <a href="{{ url_for('train_plan') }}"><img src="../static/images/icon21.png"/></a>
+        <a href="{{ url_for('recommed') }}"><img src="../static/images/icon21.png"/></a>
         <h3 class="obj_title">选课推荐</h3>
       </li>
       <li>

@@ -42,7 +42,8 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav_1"><a class="nav_but" href="{{ url_for('train_plan') }}">培养计划</a></li>
+                <li class="nav_1"><a class="nav_but" href="{{ url_for('recommed') }}">课程推荐</a></li>
+                <li class="nav_1"><a class="nav_but" href="{{ url_for('train_plan') }}">课程进度</a></li>
                 <li class="nav_1"><a class="nav_but" href="{{ url_for('index') }}">首页</a></li>
             </ul>
         </div>
@@ -74,7 +75,8 @@
 <div class="content_box_bot1">
     <ul class="content_box_bot_l">
         <div class="info_news">
-            <div class="info_news_but"><p class="on">课程进度</p><p>选课推荐</p></div>
+            <div class="info_news_but"><p class="on">课程进度</p><p>推荐</p></div>
+
             <div class="col-md-4">
                 <ul class="info_news_text info_news_text1 ">
                     <p class="info1"> 总进度</p>
@@ -169,11 +171,10 @@
                     </div>
                 </ul>
             </div>
+
             <ul class="info_news_text info_news_text2">
-                <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐1</p></a></li>
-                <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐2</p></a></li>
-                <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐3</p></a></li>
-                <li><a href=""><img src="../static/images/info_icon1.png"/><p>推荐4</p></a></li>
+                <div class="recommend_box" id="recommend_course"><p>您可能喜欢的课程:</p></div>
+                <div class="recommend_box" id="recommend_student"><p>和您选课相似的同学:</p></div>
             </ul>
             <script>
                 $(".info_news_but p").each(function(n){
