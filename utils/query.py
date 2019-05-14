@@ -13,6 +13,9 @@ def query(sql):
         cur.execute(sql)
         result = cur.fetchall()
         db.commit()
+
+        #print('query success')
+
         # print('query success')
     except:
         # print('query loss')
@@ -31,6 +34,7 @@ def update(sql):
     try:
         cur.execute(sql)
         db.commit()
+        #print('update success')
         # print('update success')
     except:
         # print('update loss')

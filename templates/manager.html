@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理界面</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/register-login.css">
+    <link rel="icon" href="../static/images/logo.ico" type="image/x-icon"/>
+    <style>
+        .a{
+            width: 100%;
+            height: 30px;
+            text-align: center;
+        }
+        #b{
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div style = 'text-align: center;'><font color="#4169E1" size="10">管理界面</font></div>
+<div class="a">
+    <table style = 'text-align: center; width: 100%' border='1'>
+        <tr><th>NAME</th><th>SEX</th><th>STU_NO</th><th>COLLEGE</th><th>MAJOR</th><th>AD_YEAR</th><th>PASSWORD</th><th>ID</th></tr>
+        {% for message in result %}
+            <tr><td>{{  message[0]  }}</td><td>{{  message[1]  }}</td><td>{{  message[2]  }}</td><td>{{  message[3]  }}</td><td>{{  message[4]  }}</td><td>{{  message[5]  }}</td><td>{{  message[6]  }}</td><td>{{  message[7]  }}</td></tr>
+        {% endfor %}
+    </table>
+    <br/>
+    <div class="app">
+
+    <div style="display:inline-block;"> <a href="{{ url_for('managerAdd') }}"><button type="submit" class="login-btn register-btn" id="button", style="width: 150px">添加用户</button></a></div>
+
+    <div style="display:inline-block;margin-left:10px;"> <a href="{{ url_for('managerDelete') }}"><button type="submit" class="login-btn register-btn" id="button", style="width: 150px">删除用户</button></a></div>
+
+    <div style="display:inline-block;margin-left:10px;"> <a href="{{ url_for('managerEdit') }}"><button type="submit" class="login-btn register-btn" id="button", style="width: 150px">编辑用户</button></a></div>
+
+    </div>
+    <br/>
+</div>
+</body>
+</html>
