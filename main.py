@@ -191,7 +191,7 @@ def getRecommedData():
     stu_no = session.get('stu_id')
     id2Student, id2Course, stuNo2MatId = map_student_course.get_map_student()
     print(stuNo2MatId)
-    scoreMatrix = map_student_course.get_matrix(id2Student, id2Course)
+    scoreMatrix = map_student_course.get_matrix(id2Student)
     print(scoreMatrix)
     """
     函数，recommedCourse：使用SVD进行课程推荐：

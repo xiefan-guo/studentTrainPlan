@@ -36,6 +36,6 @@ def get_matrix(map_student):
         #print(score)
         for j in range(118):
             matrix[i].append(int(score[j][0]))
-
+            
     return matrix
 
