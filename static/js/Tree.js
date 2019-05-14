@@ -1,7 +1,20 @@
 var dom = document.getElementById("container");
+var originTrainPlain = null;
 var myChart = echarts.init(dom);
 var app = {};
 option = null;
+
+// --------------------------------------------------------------//
+/*
+函数(1) clickFun:
+    功能: 点击计划树叶子节点时(即课程节点)改变其状态。
+    状态:
+        绿色: 已选课
+        黄色: 预选课
+        红色：未选课
+    状态变化
+        红->黄->绿->红
+ */
 myChart.on("click", clickFun);
 function clickFun(param) {
     if (typeof param.seriesIndex == 'undefined') {
@@ -25,8 +38,17 @@ function clickFun(param) {
         console.log(param.data.itemStyle.borderColor);
     }
 };
+// --------------------------------------------------------------//
+
+
+//--------------------------------------------------------------//
+/*
+函数(2)$.getJson('/get_info', function(data){...}
+    功能： 绑定路由"get_info", 从数据库中获得数据，初始化计划树
+ */
 $.getJSON('/get_info', function(data)
 {
+    originTrainPlain = data;
     myChart.setOption(option = {
         tooltip: {
             trigger: 'item',
@@ -67,7 +89,8 @@ $.getJSON('/get_info', function(data)
                             verticalAlign: 'middle',
                             align: 'left'
                         }
-                    }
+                    },
+                    symbolSize: 15
                 },
 
                 animationDurationUpdate: 750
@@ -76,9 +99,19 @@ $.getJSON('/get_info', function(data)
     });
 
 });
+//----------------------------------------------------------------//
+
+
+
+// ------------------------------------------------------------------//
+/*
+函数(3) getScore()
+    功能: 使用深度优先搜索，计算每一类课程已修学分(绿色)和预选学分(黄色)
+          结果分别存储到perExistScore和perAddScore中。
+          以供实现计划树和进度条的同步.
+ */
 var perExistScore;
 var perAddScore;
-
 function getScore(Node){
     if(typeof Node.children == 'undefined'){
         if(Node.itemStyle.borderColor == "yellow"){
@@ -94,6 +127,14 @@ function getScore(Node){
             getScore(Node["children"][sub]);
     }
 }
+//------------------------------------------------------------------------//
+
+
+// -----------------------------------------------------------------------//
+/*
+函数(4):setInterval(function(){...}
+    功能: 定时根据计划树更新进度条进度。若所修学分超过所需学分，则进度条不再更新变化。
+ */
 setInterval(function(){
     Tree = myChart.getOption()['series'][0]['data'][0];
     var subjects = ["思想政治理论", "外语", "文化素质教育必修", "体育", "军事", "健康教育", "数学", "物理", "计算机",
@@ -164,3 +205,5 @@ setInterval(function(){
         dom.textContent = TotalExistScore + '/' + TotalScore;
     }
 }, 1)
+
+//-----------------------------------------------------------------------//
