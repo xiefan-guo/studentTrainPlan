@@ -24,7 +24,7 @@ def get_map_student():
     return map_student, map_course, stuNo2MatNo
 
 
-def get_matrix(map_student, map_course):
+def get_matrix(map_student):
     matrix = []
     for i in range(30):
         matrix.append([])

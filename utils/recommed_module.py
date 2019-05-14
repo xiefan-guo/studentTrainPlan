@@ -23,13 +23,6 @@ def reBuild(U, Sigma, VT, k):
 def ecludSim(inA,inB):
     return 1.0/(1.0 + la.norm(inA - inB))
 
-def ecludSim(inA, inB):
-    '''
-    基于欧式距离度量
-    '''
-    distance = la.norm(inA, inB)
-    return 1.0 / (1.0 + distance)
-
 def cosSim(inA, inB):
     '''
     基于余弦相似性度量
