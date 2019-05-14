@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash,  jsonify, redirect, url_for, session
-from utils import query
+from utils import query, recommed
 import json
 import os
 # 创建flask对象
@@ -182,6 +182,38 @@ def news_center():
 @app.route('/recommed', methods=['GET', 'POST'])
 def recommed():
     return render_template('recommed.html')
+
+@app.route("/getRecommedData", methods=['GET','POST'])
+def getRecommedData():
+    stu_no = session.get('stu_id')
+    id2Student, id2Course = query.update()
+    scoreMatrix = query.update()
+
+    """
+    函数，recommedCourse：使用SVD进行课程推荐：
+    返回:(课程1ID， 课程1评分)
+    """
+    topNCourse = recommed.recommedCourse(scoreMatrix,stu_no,N=7)
+    topNStudent = recommed.recommedStudent(scoreMatrix, stu_no, N=7)
+    """
+    将得到的Course与Person装换为前端图标需要的json格式:
+     {
+        "source": [
+            [2.3, "计算机视觉"],
+            [1.1, "自然语言处理"],
+            [2.4, "高等数学"],
+            [3.1, "线性代数"],
+            [4.7, "计算机网络"],
+            [5.1, "离散数学"]
+        ]
+     }   
+    """
+    courseJson = recommed.toBarJson(topNCourse,id2Course)
+    personJson = recommed.toBarJson(topNStudent, id2Student)
+    coursePersonJson = {}
+    coursePersonJson['course'] = courseJson
+    coursePersonJson['person'] = personJson
+    return jsonify(coursePersonJson)
 
 @app.route('/personal_information', methods=['GET', 'POST'])
 def personal_information():
