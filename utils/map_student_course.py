@@ -1,8 +1,8 @@
 from query import query
 
-
 def get_map_student():
     map_student = {}
+    stuNo2MatNo = {}
     sql = "SELECT NAME, STU_NO FROM STUDENT WHERE STU_NO<>'admin'"
     result = query(sql)
     map_student_id = 0
@@ -19,11 +19,12 @@ def get_map_student():
         map_course[map_course_id] = cur[0]
         map_course_id = map_course_id + 1
 
-    return map_student, map_course
+    for idx in range(len(map_student)):
+        stuNo2MatNo[map_student[idx][1]] = idx
+    return map_student, map_course, stuNo2MatNo
 
 
-def get_matrix():
-    map_student, map_course = get_map_student()
+def get_matrix(map_student, map_course):
     matrix = []
     for i in range(30):
         matrix.append([])

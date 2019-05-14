@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash,  jsonify, redirect, url_for, session
-from utils import query, map_student_course, recommed
+from utils import query, map_student_course, recommed_module
 import json
 import os
 # 创建flask对象
@@ -189,15 +189,15 @@ def recommed():
 @app.route("/getRecommedData", methods=['GET','POST'])
 def getRecommedData():
     stu_no = session.get('stu_id')
-    id2Student, id2Course = query.update()
-    scoreMatrix = query.update()
-
+    id2Student, id2Course, stuNo2MatId = map_student_course.get_map_student()
+    print(stuNo2MatId)
+    scoreMatrix = map_student_course.get_matrix(id2Student, id2Course)
+    print(scoreMatrix)
     """
     函数，recommedCourse：使用SVD进行课程推荐：
     返回:(课程1ID， 课程1评分)
     """
-    topNCourse = recommed.recommedCourse(scoreMatrix,stu_no,N=7)
-    topNStudent = recommed.recommedStudent(scoreMatrix, stu_no, N=7)
+    topNCourse, topNStudent = recommed_module.recommedCoursePerson(scoreMatrix, stuNo2MatId[stu_no], N=7)
     """
     将得到的Course与Person装换为前端图标需要的json格式:
      {
@@ -211,8 +211,8 @@ def getRecommedData():
         ]
      }   
     """
-    courseJson = recommed.toBarJson(topNCourse,id2Course)
-    personJson = recommed.toBarJson(topNStudent, id2Student)
+    courseJson = recommed_module.toBarJson(topNCourse, id2Course)
+    personJson = recommed_module.toBarJson(topNStudent, id2Student)
     coursePersonJson = {}
     coursePersonJson['course'] = courseJson
     coursePersonJson['person'] = personJson
