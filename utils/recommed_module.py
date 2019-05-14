@@ -3,6 +3,26 @@ from numpy import *
 import numpy as np
 from numpy import linalg as la
 
+def getSigK(Sigma, k):
+    '''
+    输入：
+        Sigma： 输入的奇异值向量
+        k: 取前几个奇异值
+    输出：(k,k)的矩阵
+    '''
+    eyeK = np.eye(k)
+    return mat(eyeK * Sigma[:k])
+def reBuild(U, Sigma, VT, k):
+    '''
+    使用前k个特征值重构数据
+    '''
+    Sigk = getSigK(Sigma, k)
+    # 左行右列
+    return mat(np.dot(np.dot(U[:,:k], Sigk), VT[: k,:]))
+
+def ecludSim(inA,inB):
+    return 1.0/(1.0 + la.norm(inA - inB))
+
 def ecludSim(inA, inB):
     '''
     基于欧式距离度量
@@ -14,10 +34,10 @@ def cosSim(inA, inB):
     '''
     基于余弦相似性度量
     '''
-    sim = float(inA.T* inB) / la.norm(inA) * la.norm(inB)
+    sim = float(inA.T* inB) / (la.norm(inA) * la.norm(inB))
     return 0.5 + 0.5 * sim
 
-def svdMethod(svdData, simMeas, user, item):
+def svdMethod(svdData, dataMat, simMeas, user, item):
     '''
     输入：
         见recommend函数
@@ -29,6 +49,7 @@ def svdMethod(svdData, simMeas, user, item):
         3.    compute_Simliar_Score(item, item_other)
         4. return Score
     '''
+    N = shape(dataMat)[1]
     simTotal = 0.0
     ratSimTotal = 0.0
     U, Sigma, I_t = svdData
@@ -49,7 +70,7 @@ def svdMethod(svdData, simMeas, user, item):
         return 0
     return ratSimTotal / simTotal
 
-def recommedCoursePerson(dataMat, user, N=7, simMeas=cosSim, estMethod=svdMethod):
+def recommedCoursePerson(dataMat, user, N=7, simMeas=ecludSim, estMethod=svdMethod):
     '''
     输入：
         dataMat(mat)(M,N): 评分矩阵.
@@ -67,30 +88,33 @@ def recommedCoursePerson(dataMat, user, N=7, simMeas=cosSim, estMethod=svdMethod
         5. 排序取前N个输出.
     '''
     print(user)
-    unRatedItems = nonzero(dataMat[user,:] == 0)[1]
+    dataMat = mat(dataMat)
+    unRatedItems = nonzero(dataMat[user,:].A == 0)[1]
     if len(unRatedItems) == 0:
         print("没有未评分商品")
         return None
     U, Sigma, I_t = la.svd(dataMat)
     item_and_score = []
     for item in unRatedItems:
-        score = estMethod([U, Sigma, I_t], simMeas, user, item)
+        score = estMethod([U, Sigma, I_t], dataMat, simMeas, user, item)
         item_and_score.append((item, score))
 
-    userFeature =  itemFeature = dataMat * I_t[:,:k] * SigK.I
-    recomedUserVec = userFeature[user]
+    k = 0
+    while sum(Sigma[:k]) < sum(Sigma) * 0.9:
+        k = k+ 1
+    SigK = getSigK(Sigma, k)
+    userFeature  = dataMat * I_t[:,:k] * SigK.I
+    recomedUserVec = userFeature[user,:]
     user_and_score = []
     for idx, each in enumerate(userFeature):
-        if each != idx:
-            user_and_score.append((idx, cosSim(recomedUserVec, each)))
+        if user != idx:
+            user_and_score.append((idx, cosSim(recomedUserVec.T, each.T)))
     recommedCourse = sorted(item_and_score, key=lambda k: k[1], reverse=True)[:min(N, len(item_and_score))]
     recommedPerson = sorted(user_and_score, key=lambda k: k[1], reverse=True)[:min(N, len(user_and_score))]
     print(recommedCourse)
     print(recommedPerson)
     return recommedCourse, recommedPerson
 
-def recommedStudent(dataMat, user, N=3, simMeas=cosSim, estMethod=svdMethod):
-    pass
 
 def toBarJson(data, dict2id):
     """
