@@ -1,14 +1,16 @@
 from flask import Flask, render_template, request, flash,  jsonify, redirect, url_for, session
-from utils import query
+from utils import query, map_student_course
 import json
 import os
 # 创建flask对象
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'gsolvit'
 
+
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
+
 
 @app.route('/manager', methods=['GET', 'POST'])
 def manager():
@@ -117,6 +119,7 @@ def course_discussion():
         query.update(sql)
         return redirect(url_for('news_center'))
 
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -192,9 +195,11 @@ def personal_information():
     result = query.query(sql)
     return render_template('personal_information.html', result=result)
 
+
 @app.route('/train_plan', methods=['GET', 'POST'])
 def train_plan():
     return render_template('train_plan.html')
+
 
 @app.route('/get_info', methods=['GET', 'POST'])
 def get_info():
@@ -205,6 +210,7 @@ def get_info():
     stu_id = session.get('stu_id')
     planTree = query.getPlanTreeJson(stu_id)
     return jsonify(planTree)
+
 
 @app.route('/submit_train_plan', methods=['GET', 'POST'])
 def submit_train_place():
