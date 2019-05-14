@@ -190,14 +190,12 @@ def recommed():
 def getRecommedData():
     stu_no = session.get('stu_id')
     id2Student, id2Course, stuNo2MatId = map_student_course.get_map_student()
-    print(stuNo2MatId)
     scoreMatrix = map_student_course.get_matrix(id2Student)
-    print(scoreMatrix)
     """
     函数，recommedCourse：使用SVD进行课程推荐：
     返回:(课程1ID， 课程1评分)
     """
-    topNCourse, topNStudent = recommed_module.recommedCoursePerson(scoreMatrix, stuNo2MatId[stu_no], N=7)
+    topNCourse, topNStudent = recommed_module.recommedCoursePerson(scoreMatrix, stuNo2MatId[stu_no], N=20)
     """
     将得到的Course与Person装换为前端图标需要的json格式:
      {
@@ -211,8 +209,15 @@ def getRecommedData():
         ]
      }   
     """
+
+    id2Student = {i:id2Student[i][0] for i in id2Student.keys()}
+    print(id2Student)
+    print(id2Course)
     courseJson = recommed_module.toBarJson(topNCourse, id2Course)
     personJson = recommed_module.toBarJson(topNStudent, id2Student)
+    courseJson = recommed_module.regularData(courseJson, 1, 5)
+    personJson = recommed_module.regularData(personJson, 0, 1)
+
     coursePersonJson = {}
     coursePersonJson['course'] = courseJson
     coursePersonJson['person'] = personJson

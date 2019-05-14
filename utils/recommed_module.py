@@ -130,3 +130,15 @@ def toBarJson(data, dict2id):
         unit = [each[1], dict2id[each[0]]]
         jsonData['source'].append(unit)
     return jsonData
+
+def regularData(data, a, b):
+    """
+    功能，将列表的值归一化到[a,b]之间
+    """
+    dataNum = [i[0] for i in data['source']]
+    Max, Min = max(dataNum), min(dataNum)
+    k = (b-a)/(Max-Min)
+    dataRg = [a+ k*(i-Min) for i in dataNum]
+    for idx,each in enumerate(data['source']):
+        each[0] = dataRg[idx]
+    return data

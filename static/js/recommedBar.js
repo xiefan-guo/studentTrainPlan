@@ -10,7 +10,7 @@ $.getJSON('/getRecommedData', function(coursePersonJson)
     var optionCourse = {
         dataset: coursePersonJson['course'],
         grid: {containLabel: true},
-        xAxis: {name: 'amount'},
+        xAxis: {name: '喜爱程度'},
         yAxis: {type: 'category'},
         visualMap: {
             orient: 'horizontal',
@@ -39,13 +39,13 @@ $.getJSON('/getRecommedData', function(coursePersonJson)
     var optionPerson = {
         dataset: coursePersonJson['person'],
         grid: {containLabel: true},
-        xAxis: {name: 'amount'},
+        xAxis: {name: '相似度'},
         yAxis: {type: 'category'},
         visualMap: {
             orient: 'horizontal',
             left: 'center',
-            min: 1,
-            max: 5,
+            min: 0.7,
+            max: 1,
             text: ['High Score', 'Low Score'],
             // Map the score column to color
             dimension: 0,
@@ -65,11 +65,10 @@ $.getJSON('/getRecommedData', function(coursePersonJson)
             }
         ]
     };
-
+    if (optionCourse && typeof optionCourse === "object") {
+        chartCourse.setOption(optionCourse, true);
+    }
+    if (optionPerson && typeof optionPerson === "object") {
+        chartPerson.setOption(optionPerson, true);
+    }
 });
-if (optionCourse && typeof optionCourse === "object") {
-    chartCourse.setOption(optionCourse, true);
-}
-if (optionPerson && typeof optionPerson === "object") {
-    optionPerson.setOption(optionPerson, true);
-}
