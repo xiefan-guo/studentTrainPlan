@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav_1"><a class="nav_but" href="{{ url_for('recommed') }}">课程推荐</a></li>
+                <li class="nav_1"><a class="nav_but" href="{{ url_for('recommed') }}">推荐</a></li>
                 <li class="nav_1"><a class="nav_but" href="{{ url_for('train_plan') }}">课程进度</a></li>
                 <li class="nav_1"><a class="nav_but" href="{{ url_for('index') }}">首页</a></li>
             </ul>
@@ -75,7 +75,7 @@
 <div class="content_box_bot1">
     <ul class="content_box_bot_l">
         <div class="info_news">
-            <div class="info_news_but"><p class="on">课程进度</p><p>推荐</p></div>
+            <div class="info_news_but"><p class="on">课程进度</p><p>评分</p></div>
 
             <div class="col-md-4">
                 <ul class="info_news_text info_news_text1 ">
@@ -167,23 +167,44 @@
                         <input type="submit" onclick="submit()" value="提交 ">
                     </div>
                     <div class="reset">
-                        <input type="reset" onclick="rebuild()" name="butReset" value="重置">
+                        <input type="reset" onclick="rebuild()" name="butReset" value="撤销">
                     </div>
                 </ul>
             </div>
 
             <ul class="info_news_text info_news_text2">
-                <div class="recommend_box" id="recommend_course"><p>您可能喜欢的课程:</p></div>
-                <div class="recommend_box" id="recommend_student"><p>和您选课相似的同学:</p></div>
+                <select id="domain" style="width:220px; height: 40px">
+                    <option selected="selected">课程类别</option>
+                </select>
+                <p></p>
+                <select id="course" style="width:220px; height: 40px">
+                    <option selected="selected">课程</option>
+                </select>
+                <p></p>
+                <select id="score" style="width:220px; height: 40px">
+                    <option selected="selected">分数</option>
+                </select>
+                <p></p>
+                <div class="scoreConfirm"  style="width:220px; height: 40px">
+                    <input type="reset" onclick="updataScore()" name="score" value="确定评分">
+                </div>
             </ul>
+
             <script>
                 $(".info_news_but p").each(function(n){
+
                     $(this).click(function(){
                         $(this).addClass("on").siblings("p").removeClass("on");
                         $(".info_news_text").hide(400).eq(n).show(500);
                     });
                 });
             </script>
+            <script  type="text/javascript">
+                window.onload = function(){
+                    initScore();
+                };
+            </script>
+
         </div>
     </ul>
     <div id="container" style="width:1600px; height:750px;position: absolute; margin-top:0px; margin-left:310px;"></div>
