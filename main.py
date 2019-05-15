@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, flash,  jsonify, redirect, url_for, session
 from utils import query, map_student_course, recommed_module
 import json
+import time
 import os
 # 创建flask对象
 app = Flask(__name__)
@@ -114,7 +115,11 @@ def course_discussion():
         sql = "select NAME from STUDENT where STU_NO = '%s'" % stu_id
         stu_name = query.query(sql)
         stu_name = stu_name[0][0]
-        sql = "INSERT INTO NEWS(TOPIC, COMMENTS, COMMENTER) VALUES ('%s', '%s', '%s')" % (topic, comments, stu_name)
+        now = time.time()
+        now = time.strftime('%Y-%m-%d', time.localtime(now))
+        now = str(now)
+        news_id = stu_name + now
+        sql = "INSERT INTO NEWS(TOPIC, COMMENTS, COMMENTER, NEWS_ID, IS_FIRST) VALUES ('%s', '%s', '%s', '%s', '0')" % (topic, comments, stu_name, news_id)
         print(sql)
         query.update(sql)
         return redirect(url_for('news_center'))
@@ -177,10 +182,46 @@ def register():
 
 @app.route('/news_center', methods=['GET', 'POST'])
 def news_center():
-    sql = "select * from NEWS"
+    sql = "select * from NEWS WHERE IS_FIRST='0'"
     result = query.query(sql)
     print(result)
     return render_template('news_center.html', result=result)
+
+
+@app.route('/detail/<question>', methods=['GET', 'POST'])
+def detail(question):
+    print(question)
+    #question=str(question)
+    if request.method=='GET':
+        sql="SELECT TOPIC, COMMENTS, COMMENTER, CREATE_TIME FROM NEWS WHERE NEWS_ID='%s'" % question
+        title=query.query(sql)
+        #print(title)
+        title=title[0]
+        sql="SELECT * FROM NEWS WHERE IS_FIRST='%s'" % question
+        result=query.query(sql)
+        return render_template('detail.html', title=title, result=result)
+    else:
+        comments = request.form.get('comments')
+        stu_id = session.get('stu_id')
+        sql = "select NAME from STUDENT where STU_NO = '%s'" % stu_id
+        stu_name = query.query(sql)
+        stu_name = stu_name[0][0]
+        now = time.time()
+        now = time.strftime('%Y-%m-%d', time.localtime(now))
+        now = str(now)
+        news_id = stu_name + now
+        sql = "INSERT INTO NEWS(TOPIC, COMMENTS, COMMENTER, NEWS_ID, IS_FIRST) VALUES ('回复', '%s', '%s', '%s', '%s')" % (comments, stu_name, news_id,question)
+        print(sql)
+        query.update(sql)
+
+        sql = "SELECT TOPIC, COMMENTS, COMMENTER, CREATE_TIME FROM NEWS WHERE NEWS_ID='%s'" % question
+        title = query.query(sql)
+        # print(title)
+        title = title[0]
+        sql = "SELECT * FROM NEWS WHERE IS_FIRST='%s'" % question
+        result = query.query(sql)
+        return render_template('detail.html', title=title, result=result)
+
 
 @app.route('/recommed', methods=['GET', 'POST'])
 def recommed():

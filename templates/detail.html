@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../static/css/style1.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/register-login.css">
+    <link rel="icon" href="../static/images/logo.ico" type="image/x-icon"/>
+<script src="../static/js/jquery1.42.min.js" type="text/javascript"></script>
+<script src="../static/js/jquery.js"></script>
+<script src="../static/js/jquery.superslide.2.1.1.js" type="text/javascript"></script>
+<title>评论回复</title>
+</head>
+<style type="text/css">
+.article-container{
+    background-color: #ffffff;
+    padding-top:20px;
+    width:1024px;
+    margin:20px auto;
+  }
+
+  .article_r{
+    padding-top:10px;
+    float:right;
+  }
+  .pulisher,.time,.article_view,.article_comments,.article_del{
+    clear:both;
+    margin-right:25px;
+    font-size: 15px;
+  }
+  .title{
+    font-weight:bold;
+    font-size: 30px;
+    text-align: center;
+  }
+  .article_content{
+    background: #ffffff;
+    clear:both;
+    padding:1em 4em;
+    margin-top: 40px;
+  }
+  p{
+    text-indent: 2em;
+    text-overflow: hidden;
+    font-size:18px;
+  }
+
+  /*话题内容图片*/
+  .ImgContent{
+    width:350px;
+    margin:0px auto;
+    padding: 5px;
+    overflow:hidden;
+
+}
+
+.NavLinks{
+    padding:5px;
+    width:100px;
+    height: 100px;
+    float: left;
+    overflow: hidden;
+}
+
+.NavLinks img{
+    width: 100%;
+    height: 100%;
+}
+.hitShowPic {
+width:350px;
+clear:both;
+margin-left:430px;
+}
+.hitShowPic span {
+  font-size: 15px;
+  text-align: center;
+}
+    /*以下评论的css*/
+   .show_reply_list {
+    margin-right:1em;
+     color: grey;
+   }
+    .comment_list {
+    background-color: #ffffff;
+    padding-top:5px;
+    width:900px;
+    margin:0 auto;
+  }
+    .comment {
+      width:900px;
+      margin-top:10px;
+    }
+    .comment_details {
+      float:right;
+    }
+    .comment_content {
+      clear:both;
+      margin:5px 50px;
+      font-size:16px;
+    }
+  .comment_add_or_last {
+
+    margin:0 auto;
+    clear: both;
+    width:600px;
+    height:50px;
+    background: #F0F0F0;
+    text-align: center;
+    font-size:20px;
+     line-height: 40px;   //行高（与div保持同高，垂直居中写法）
+     margin-bottom: 40px;
+  }
+  .imgdiv{
+       width:80px;
+       height:70px;
+      float:left;
+
+  }
+  .imgcss {
+    width:60px;
+    height:60px;
+    border-radius: 50%;
+  }
+  .comment_name {
+    margin-left:10px;
+    color:#3D9EEA;
+    font-size:16px;
+    font-weight: bolder;
+  }
+  .layui-icon {
+    font-size: 13px;
+    color: grey;
+  }
+  .del {
+    float:right;
+
+  }
+  .del_comment {
+     margin-right:50px;
+  }
+
+
+
+  .reply_list {
+    clear:both;
+    display:none;
+    width:900px;
+
+    padding-right:15px;
+    margin-top:10px;
+      font-size:16px;
+
+  }
+  .reply {
+    clear:both;
+    width:700px;
+    margin:4px auto;
+
+  }
+  .reply_name {
+    color:#3D9EEA;
+  }
+  .del_reply {
+      float:right;
+  }
+  .show_remain_reply {
+     width:600px;
+     height:40px;
+     text-align:center;font-size:18px;
+     background-color: #F0F0F0;
+     margin:0 auto;
+     line-height: 40px;
+     display:none;
+  }
+</style>
+
+<body>
+<div class="wapper_box">
+    <div class="header_box"></div>
+    <div class="header_box1">
+        <div class="header_box2">
+            <a class="logo_box" href="{{ url_for('index') }}">
+                <img src="../static/images/logo1.jpeg"/></a>
+            <ul class="nav_box">
+                <li class="nav_1"><a class="nav_but" href="{{ url_for('personal_information') }}">个人中心</a></li>
+                <li class="nav_1"><a class="nav_but" href="{{ url_for('news_center') }}">课程论坛</a>
+                    <div class="nav_slide">
+                        <div class="nav_slide1">
+                            <a href="xinwenzhongxin.html">课程公告<span>
+                            <img src="../static/images/siade_bg1.png"/></span></a>
+                        <a href="{{ url_for('course_discussion') }}">课程讨论<span>
+                            <img src="../static/images/siade_bg1.png"/></span></a>
+        </div>
+    </div>
+    </li>
+                <li class="nav_1"><a class="nav_but" href="{{ url_for('recommed') }}">课程推荐</a></li>
+    <li class="nav_1"><a class="nav_but" href="{{ url_for('train_plan') }}">课程进度</a></li>
+    <li class="nav_1"><a class="nav_but" href= "{{ url_for('index') }}">首页</a></li>
+    </ul>
+</div>
+<script>
+    $(".nav_1").mouseenter(function(){
+        $(this).find(".nav_slide").slideDown()
+    });
+
+    $(".nav_1").mouseleave(function(){
+        $(".nav_slide").slideUp()
+    });
+    //$(".producys_box").mouseout(function(){
+    // $(this).find(".producys_box1").slideUp();
+    //});
+</script>
+</div>
+<!--banner部分开始-->
+<div class="banner_box">
+    <ul class="banner_pic">
+        <li><img src="../static/images/logo.jpeg" /></li>
+        <li><img src="../static/images/logo.jpeg" /></li>
+        <li><img src="../static/images/logo.jpeg" /></li>
+
+    </ul>
+    <a class="prev" href="javascript:void(0)"></a>
+    <a class="next" href="javascript:void(0)"></a>
+    <div class="num"><ul></ul></div>
+</div>
+<script>
+    /*鼠标移过，左右按钮显示*/
+    $(".banner_box").hover(function(){
+        $(this).find(".prev,.next").fadeTo("show",0.1);
+    },function(){
+        $(this).find(".prev,.next").hide();
+    })
+    /*鼠标移过某个按钮 高亮显示*/
+    $(".prev,.next").hover(function(){
+        $(this).fadeTo("show",0.7);
+    },function(){
+        $(this).fadeTo("show",0.1);
+    })
+    $(".banner_box").slide({ titCell:".num ul" , mainCell:".banner_pic" , effect:"fold", autoPlay:true, delayTime:700 , autoPage:true });
+</script>
+<!-- 代码 结束 -->
+<!--banner部分结束-->
+
+
+
+<form method="post">
+<div style="width:800px;margin:10px auto">
+    <table>
+        <tr><td><textarea  name="comments" style="width:800px;height:200px"></textarea></td></tr>
+        <tr><td>
+            <div class="button" align="center">
+                <button type="submit" class="login-btn register-btn" id="button" style="width: 100px">回复</button>
+            </div>
+        </td></tr>
+    </table>
+</div>
+</form>
+
+
+
+</div>
+</div>
+
+<!--内容结束-->
+</div>
+
+    <div class="article_head">
+    <h1 class="title">{{ title[0] }}</h1>
+    <div class="article_r">
+        <span class="pulisher">{{ title[2] }} 发表</span>
+        <span class="time">{{ title[3] }}</span>
+    </div>
+    </div>
+    <div class="article_content">
+        <h2> {{ title[1] }}</h2>
+    </div>
+<hr>
+{% for message in result %}
+    <h3><li><a class="content_boxL_list_info">{{ message[2] }}:【 {{ message[0] }}】 {{ message[1] }}<span class="yewu_date">{{ message[3] }}</span></a></li>
+    </h3>
+    <hr>
+{% endfor %}
+
+
+</body>
+</html>
