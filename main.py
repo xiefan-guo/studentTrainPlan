@@ -290,6 +290,7 @@ def get_info():
     """
     stu_id = session.get('stu_id')
     planTree = query.getPlanTreeJson(stu_id)
+    print(planTree)
     return jsonify(planTree)
 
 

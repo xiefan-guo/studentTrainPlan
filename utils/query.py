@@ -1,7 +1,6 @@
 import pymysql
 from config import config
 
-
 def query(sql):
     """
     功能; 使用sql语句查询数据库中学生选课信息.
@@ -101,10 +100,18 @@ def getPlanTreeJson(stu_id):
     for j in range(44):
         add_time_list.append([])
 
+    sql="SELECT CO_NO,COMMENT FROM CHOOSE WHERE STU_NO='%s'" % stu_id
+    course2score=query(sql)
+    co2score = {}
+    for cur in course2score:
+        co2score[cur[0]] = cur[1]
+
+    #print(co2score)
+
     for co in finished_co:
         course_add = {}
         aid_str = str(aid)
-        sql = "select CLASSIFICATION, START_TIME, CO_NAME, IS_MUST, CREDITS from education_plan WHERE CO_100='%s'" % aid_str
+        sql = "select CLASSIFICATION, START_TIME, CO_NAME, IS_MUST, CREDITS, CO_NO from education_plan WHERE CO_100='%s'" % aid_str
         co_name = query(sql)
         #print('数据库查询结果')
         #print(co_name)
@@ -121,6 +128,7 @@ def getPlanTreeJson(stu_id):
             add_curse['name'] = co_name[0][2]
             add_curse['itemStyle'] = {'borderColor': 'red'}
             add_curse['value'] = add_score
+            add_curse['score'] = int(co2score[co_name[0][5]])
 
             if co_name[0][3] == 1:
                 add_is['name'] = '必修'
@@ -136,6 +144,7 @@ def getPlanTreeJson(stu_id):
             add_curse['name'] = co_name[0][2]
             add_curse['itemStyle'] = {'borderColor': 'green'}
             add_curse['value'] = add_score
+            add_curse['score'] = int(co2score[co_name[0][5]])
 
             if co_name[0][3] == 1:
                 add_is['name'] = '必修'
