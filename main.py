@@ -193,7 +193,7 @@ def detail(question):
     print(question)
     #question=str(question)
     if request.method=='GET':
-        sql="SELECT TOPIC, COMMENTS, COMMENTER, CREATE_TIME FROM NEWS WHERE NEWS_ID='%s'" % question
+        sql="SELECT TOPIC, COMMENTS, COMMENTER, CREATE_TIME FROM NEWS WHERE NEWS_ID='%s' AND IS_FIRST='0'" % question
         title=query.query(sql)
         #print(title)
         title=title[0]
@@ -214,7 +214,7 @@ def detail(question):
         print(sql)
         query.update(sql)
 
-        sql = "SELECT TOPIC, COMMENTS, COMMENTER, CREATE_TIME FROM NEWS WHERE NEWS_ID='%s'" % question
+        sql = "SELECT TOPIC, COMMENTS, COMMENTER, CREATE_TIME FROM NEWS WHERE NEWS_ID='%s' AND IS_FIRST='0'" % question
         title = query.query(sql)
         # print(title)
         title = title[0]
