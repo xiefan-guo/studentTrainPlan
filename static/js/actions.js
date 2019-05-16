@@ -5,7 +5,8 @@
     功能:绑定"培养计划"界面中的“提交”按钮，将用户更新的计划书结果存储到数据库中，并刷新计划书和进度条
  */
 function submit(){
-    var postData = {}
+    alert("提交成功");
+    var postData = {};
     var tree = myChart.getOption()['series'][0]['data'][0];
     var scores = course2score;
     var returnData = {'tree':tree, 'scores':scores};
@@ -137,7 +138,7 @@ setTimeout(function initScore(){
         else{
             $("#score").append($("<option></option>").val(0).html("已评分:"+ courseScore[domainIndex][courseIndex]));
             $("#btnScore").attr('disabled',true);
-            $("#score").attr("disabled",true)
+            $("#score").attr("disabled",true);
         }
     })
 }, 3000)
@@ -156,4 +157,8 @@ function updataScore(){
     var domScore =  document.getElementById("score");
     course2score[courseName] = parseInt(domScore[domScore.selectedIndex].text);
     alert("评分成功")
+    domScore.length=0;
+    $("#score").append($("<option></option>").val(0).html("已评分:"+ course2score[courseName]));
+    $("#score").attr("disabled",true);
+    $("#btnScore").attr('disabled',true);
 }
