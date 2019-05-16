@@ -1,4 +1,4 @@
-from query import query
+from utils.query import query
 
 def get_map_student():
     map_student = {}

@@ -302,7 +302,9 @@ def submit_train_place():
     :return:
     """
     """功能1："""
-    train_plan = request.get_json(force=True)
+    twoData = request.get_json(force=True)
+    train_plan = twoData['tree']
+    scores = twoData['scores']
 
     #train_plan['name'] = "数据转换成功"
     print('反馈回来的数据是：')
@@ -339,6 +341,7 @@ def submit_train_place():
 
     stu_id = session.get('stu_id')
     query.updateDatabase(stu_id, train_plan)
+    query.updateScore(stu_id, scores)
 
     """功能2："""
     train_plan_str = json.dumps(train_plan)

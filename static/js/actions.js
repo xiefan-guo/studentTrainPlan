@@ -111,7 +111,12 @@ setTimeout(function initScore(){
         $("#course").append($("<option></option>").val(0).html("课程"));
         var index = $(this).val()-1;
         for(var i = 0; i < courseName[index].length; i++) {
-            $("#course").append($("<option></option>").val(i + 1).html(courseName[index][i]));
+            if(courseScore[index][i] == 0+""){
+                $("#course").append($("<option></option>").val(i + 1).html(courseName[index][i]));
+            }
+              else{
+                $("#course").append($("<option></option>").val(i + 1).html("√"+courseName[index][i]));
+            }
         }
     })
     $("#course").change(function(){
@@ -126,9 +131,13 @@ setTimeout(function initScore(){
             for(var s=1; s<=5; s++){
                 $("#score").append($("<option></option>").val(s).html(s));
             }
+            $("#btnScore").attr('disabled',false);
+            $("#score").attr("disabled", false);
         }
         else{
             $("#score").append($("<option></option>").val(0).html("已评分:"+ courseScore[domainIndex][courseIndex]));
+            $("#btnScore").attr('disabled',true);
+            $("#score").attr("disabled",true)
         }
     })
 }, 3000)
@@ -146,4 +155,5 @@ function updataScore(){
     var courseName = domCourse[domCourse.selectedIndex].text;
     var domScore =  document.getElementById("score");
     course2score[courseName] = parseInt(domScore[domScore.selectedIndex].text);
+    alert("评分成功")
 }

@@ -521,3 +521,16 @@ def updateDatabase(stu_id, train_plan):
     #print(array_finish)
     sql = "UPDATE edu_stu_plan SET FINISHED_CO='%s' WHERE STU_NO='%s'" % (finish_co,stu_id)
     update(sql)
+
+
+def updateScore(stu_id, scores):
+    sql="SELECT CO_NO, CO_NAME FROM EDUCATION_PLAN";
+    name2no = {}
+    result = query(sql)
+    for cur in result:
+        name2no[cur[1]] = cur[0]
+
+    for cur in scores:
+        sql="UPDATE CHOOSE SET COMMENT='%d' WHERE STU_NO='%s' AND CO_NO='%s'" % (scores[cur], stu_id, name2no[cur])
+        #print(sql)
+        update(sql)
