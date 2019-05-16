@@ -52,13 +52,26 @@ pip install numpy
     source insert_edu_stu_plan.sql;
     ```
 - 回到主目录
-```
-python main.py
-```
+    - 修改`config.py`中
+    ```
+    config = {
+        'default': Config,
+        'MYSQL_PASSWORD': '123456',
+        'DATABASE_NAME': 'studentTrainPlan'
+    }
+    ```
+    `MYSQL_PASSWORD`字段为自己数据库密码.
+    - 执行
+    ```
+    python main.py
+    ```
 - 打开浏览器,输入
 ```
 localhost:5000
 ```
+# 部署
+参考[博客](https://blog.csdn.net/qq_40423339/article/details/86606308#commentsedit)
+
 # 效果图
 ![主页](./exampleImage/index.png)
 
