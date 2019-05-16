@@ -1,8 +1,0 @@
-<component name="InspectionProjectProfileManager">
-  <profile version="1.0">
-    <option name="myName" value="Project Default" />
-    <inspection_tool class="PyInterpreterInspection" enabled="true" level="WARNING" enabled_by_default="true">
-      <scope name="Changed Files" level="WARNING" enabled="true" />
-    </inspection_tool>
-  </profile>
-</component>
