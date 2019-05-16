@@ -78,7 +78,7 @@ localhost:5000
 
 ![课程进度](./exampleImage/plan.png)
 
-![推荐](./exampleImage/recommed.png)
+![推荐](./exampleImage/recommend.png)
 
 ![课程论坛](./exampleImage/discuss.png)
 
